@@ -1,0 +1,46 @@
+# Medium experiment: 20-sample candidate pool from the EPM/STU subset
+# (OVO-Bench/data/ovo_epm_stu_20.json), budgets {1000,2000,4000,8000}.
+#
+# NOTE on scope: the Full-KV oracle repeats the whole video eagerly, so a
+# 1000s+ clip (e.g. id 636 = 1480s -> ~100k visual tokens) is not feasible on
+# a single 24GB GPU. `max_video_duration` keeps only clips whose full-KV oracle
+# fits; the run below therefore covers the feasible EPM/STU subset rather than
+# all 20. Set `sample_ids: []` + `num_samples: 20` + a larger max_video_duration
+# (or a multi-GPU / lower sample_fps setup) to attempt the full sweep.
+experiment_name: medium_epm_stu
+base_config: configs/eval_kv_metrics_medium_base.yaml
+benchmark: ovobench
+output_root: outputs/kv_metrics/experiments
+
+sample_scale: medium
+metrics_root: outputs/kv_metrics
+min_compactions: 3
+num_samples: 8
+# Explicit ids keep the run deterministic and inside the oracle feasibility
+# envelope (durations 153-369s). Empty list => use the selector.
+sample_ids: ["3", "7", "2", "1", "0", "6"]
+max_video_duration: 400
+
+metric_backend: eager
+anchor: last_user_token
+temporal_bins: [0, 10, 30, 60, 300, inf]
+profile_wallclock: true
+scope: hermes_managed
+summary_token_mode: identity_only
+
+experiments:
+  - name: hermes_budget_1000
+    hermes_enabled: true
+    budget: 1000
+
+  - name: hermes_budget_2000
+    hermes_enabled: true
+    budget: 2000
+
+  - name: hermes_budget_4000
+    hermes_enabled: true
+    budget: 4000
+
+  - name: hermes_budget_8000
+    hermes_enabled: true
+    budget: 8000

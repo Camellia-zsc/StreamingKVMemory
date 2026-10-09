@@ -1,0 +1,45 @@
+# TEST 1 (No Compression Oracle): HERMES budget is effectively infinite, so
+# both passes run the identical full-KV path. Expect RAM~1, AORE~0, JS~0,
+# KL~0, compression_ratio~1.
+model:
+  name: MMDuet2
+  model_path: models/MMDuet2
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 8
+  attn_implementation: original
+  max_side: 336
+
+memory:
+  method: hermes
+  compression:
+    enabled: false
+    budget: 100000000
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_all_tasks_smoke.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+
+output:
+  root: outputs/evaluation
+  resume: false
+  save_raw_prediction: false
+
+evaluation:
+  fail_on_missing_video: true
+
+kv_metrics:
+  enable: true
+  mode: paired
+  dir: outputs/kv_metrics
+  run_name: test1_no_compression
+  attention_backend: eager
+  anchor: last_user_token
+  profile_wallclock: true
+  scope: hermes_managed
+  summary_token_mode: identity_only

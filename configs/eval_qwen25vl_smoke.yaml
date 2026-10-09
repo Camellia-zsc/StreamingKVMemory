@@ -1,0 +1,45 @@
+# Qwen2.5-VL streaming backend (NON-proactive) smoke config.
+#
+# New research protocol: stream video chunks -> incremental KV prefill ->
+# HERMES compression -> query -> answer. No proactive decision, no NO REPLY.
+# The legacy MMDuet2 backend is untouched; switch back with model.backend.
+model:
+  name: Qwen2.5-VL
+  backend: qwen2_5_vl
+  model_path: models/Qwen2.5-VL-7B-Instruct
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 16
+  attn_implementation: auto
+  max_side: 336
+  # read-only step-0 option logits for the decision-fidelity metrics
+  capture_option_logits: true
+
+# official = free decode + option extraction (benchmark protocol, default)
+# constrained = historical MMDuet2-style hard A-E first-token mask
+mcq_decode_mode: official
+
+memory:
+  method: hermes
+  compression:
+    enabled: true
+    budget: 200
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_bench_new.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+  streamingbench:
+    enabled: false
+
+output:
+  root: outputs/evaluation_qwen25vl
+  resume: true
+  save_raw_prediction: true
+
+evaluation:
+  fail_on_missing_video: true

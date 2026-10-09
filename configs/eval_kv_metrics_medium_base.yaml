@@ -1,0 +1,44 @@
+# Base eval config for the medium KV-fidelity experiment.
+# EPM/STU 20-sample subset; the experiment matrix overrides the HERMES budget.
+model:
+  name: MMDuet2
+  model_path: models/MMDuet2
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 8
+  attn_implementation: original   # SDPA deployment path
+  max_side: 336
+
+memory:
+  method: hermes
+  compression:
+    enabled: true
+    budget: 2000
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_epm_stu_20.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+
+output:
+  root: outputs/evaluation
+  resume: false
+  save_raw_prediction: false
+
+evaluation:
+  fail_on_missing_video: true
+
+kv_metrics:
+  enable: true
+  mode: paired
+  dir: outputs/kv_metrics
+  run_name: medium
+  attention_backend: eager
+  anchor: last_user_token
+  profile_wallclock: true
+  scope: hermes_managed
+  summary_token_mode: identity_only

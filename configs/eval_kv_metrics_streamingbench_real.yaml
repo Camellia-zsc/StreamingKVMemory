@@ -1,0 +1,49 @@
+# KV-compaction experiment base config for StreamingBench Real-Time Visual
+# Understanding ONLY. Uses context_mode: full_prefix ([0, query_time]).
+# The official benchmark default (main_60s) is untouched.
+model:
+  name: MMDuet2
+  model_path: models/MMDuet2
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 8
+  attn_implementation: original
+  max_side: 336
+
+memory:
+  method: hermes
+  compression:
+    enabled: true
+    budget: 2000
+
+benchmarks:
+  streamingbench:
+    enabled: true
+    video_root: datasets/StreamingBench
+    annotations:
+      real_time_visual_understanding: datasets/StreamingBench/StreamingBench/Real_Time_Visual_Understanding.csv
+    # [0, query_time] full prefix -- experiment only
+    context_mode: full_prefix
+    input_modality: visual_only
+
+output:
+  root: outputs/evaluation
+  resume: false
+  save_raw_prediction: false
+
+evaluation:
+  fail_on_missing_video: true
+
+kv_metrics:
+  enable: true
+  mode: paired
+  dir: outputs/kv_metrics
+  run_name: sb_real
+  attention_backend: eager
+  anchor: last_user_token
+  profile_wallclock: true
+  scope: hermes_managed
+  summary_token_mode: identity_only

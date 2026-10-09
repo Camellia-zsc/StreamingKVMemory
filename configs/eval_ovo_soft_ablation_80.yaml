@@ -1,0 +1,51 @@
+# OVO soft-constraint ablation (80-sample subset) config.
+#
+# Annotation is a frozen 80-sample subset (ASI/HLD/ATR/OCR x 20) generated
+# deterministically from the intersection of the historical result file and
+# the current full predictions. See outputs/evaluation/<run>/summary.json.
+#
+# Protocol switches live under the top-level `ovo:` block; the values below
+# are the official/default behavior (D). Override per experiment with
+#   --ovo_must_reply {true,false}  --ovo_constrain_mcq_first_token {true,false}
+model:
+  name: MMDuet2
+  model_path: models/MMDuet2
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 16
+  attn_implementation: auto
+  max_side: 336
+  offline_fps: 0.5
+  offline_max_side: 336
+  offline_max_frames: 4
+
+memory:
+  method: hermes
+  compression:
+    enabled: false
+    budget: 6000
+
+ovo:
+  must_reply: true
+  constrain_mcq_first_token: true
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_soft_protocol_ablation_80.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+  streamingbench:
+    enabled: false
+  videomme:
+    enabled: false
+
+output:
+  root: outputs/evaluation
+  resume: true
+  save_raw_prediction: true
+
+evaluation:
+  fail_on_missing_video: true

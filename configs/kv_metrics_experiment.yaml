@@ -1,0 +1,47 @@
+# Experiment matrix for the KV compression fidelity study.
+experiment_name: stage1_ovo_smoke
+base_config: configs/eval_kv_metrics_smoke.yaml
+benchmark: ovobench
+output_root: outputs/kv_metrics/experiments
+
+# Sample selection
+sample_scale: smoke          # smoke | medium | full
+metrics_root: outputs/kv_metrics
+min_compactions: 3
+num_samples: 3
+# Explicit sample ids override the selector (leave empty to auto-select).
+sample_ids:
+  - "0"      # EPM, ~215s
+  - "297"    # HLD, ~371s
+  - "1516"   # SSR, 12 queries -> PRE/POST coverage
+
+# Metric settings (must match the verified defaults)
+metric_backend: eager
+anchor: last_user_token
+temporal_bins: [0, 10, 30, 60, 300, inf]
+profile_wallclock: true
+scope: hermes_managed
+summary_token_mode: identity_only
+
+# Experiment matrix.
+# Stage 1 (recommended first run, per the task spec) = full + 2000 + 4000.
+# Uncomment 1000 / 8000 for the full sweep once Stage 1 is verified.
+experiments:
+  - name: full
+    hermes_enabled: false
+
+#  - name: hermes_budget_1000
+#    hermes_enabled: true
+#    budget: 1000
+
+  - name: hermes_budget_2000
+    hermes_enabled: true
+    budget: 2000
+
+  - name: hermes_budget_4000
+    hermes_enabled: true
+    budget: 4000
+
+#  - name: hermes_budget_8000
+#    hermes_enabled: true
+#    budget: 8000

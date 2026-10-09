@@ -1,0 +1,60 @@
+model:
+  name: MMDuet2
+  model_path: models/MMDuet2
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 16
+  attn_implementation: auto
+  max_side: 336
+  offline_fps: 0.5
+  offline_max_side: 336
+  # The local 24 GB GPU needs a small uniform sample for offline QA.
+  offline_max_frames: 4
+
+memory:
+  method: full_cache
+  compression:
+    enabled: false
+    budget: 6000
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_bench_new.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+  streamingbench:
+    enabled: true
+    video_root: datasets/StreamingBench
+    annotations:
+      real_time_visual_understanding: datasets/StreamingBench/StreamingBench/Real_Time_Visual_Understanding.csv
+      contextual_understanding: datasets/StreamingBench/StreamingBench/Contextual_Understanding.csv
+      omni_source_understanding: datasets/StreamingBench/StreamingBench/Omni_Source_Understanding.csv
+      sequential_question_answering: datasets/StreamingBench/StreamingBench/Sequential_Question_Answering.csv
+      proactive_output: datasets/StreamingBench/StreamingBench/Proactive_Output.csv
+    context_mode: main_60s
+    context_time: 60
+    proactive_protocol: official_polling
+    input_modality: visual_only
+  videomme:
+    enabled: true
+    annotation: datasets/Video-MME/annotations/medium_questions.jsonl
+    video_root: datasets/Video-MME/videos
+    # Evaluate only the Medium videos covered by the five local ZIPs.
+    archive_map: datasets/Video-MME/annotations/medium_archive_map_first5.json
+    allowed_archives:
+      - videos_chunked_01.zip
+      - videos_chunked_02.zip
+      - videos_chunked_03.zip
+      - videos_chunked_04.zip
+      - videos_chunked_05.zip
+
+output:
+  root: outputs/evaluation
+  resume: true
+  save_raw_prediction: true
+
+evaluation:
+  fail_on_missing_video: true

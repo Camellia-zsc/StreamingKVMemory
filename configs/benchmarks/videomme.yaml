@@ -1,0 +1,10 @@
+enabled: true
+annotation: datasets/Video-MME/annotations/medium_questions.jsonl
+video_root: datasets/Video-MME/videos
+archive_map: datasets/Video-MME/annotations/medium_archive_map_first5.json
+allowed_archives:
+  - videos_chunked_01.zip
+  - videos_chunked_02.zip
+  - videos_chunked_03.zip
+  - videos_chunked_04.zip
+  - videos_chunked_05.zip

@@ -1,0 +1,59 @@
+# KV-compaction experiment base config for StreamingBench Real-Time Visual
+# Understanding on the **Qwen2.5-VL** streaming backend.
+#
+# Same full_prefix [0, query_time] semantics as the MMDuet2 config; the only
+# difference is the model backend and the MCQ decode policy. The legacy
+# MMDuet2 config / results are untouched.
+model:
+  name: Qwen2.5-VL
+  backend: qwen2_5_vl
+  model_path: models/Qwen2.5-VL-7B-Instruct
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 8
+  attn_implementation: auto
+  max_side: 336
+  capture_option_logits: true
+
+mcq_decode_mode: official
+
+memory:
+  method: hermes
+  compression:
+    enabled: true
+    budget: 2000
+
+benchmarks:
+  streamingbench:
+    enabled: true
+    video_root: datasets/StreamingBench
+    annotations:
+      real_time_visual_understanding: datasets/StreamingBench/StreamingBench/Real_Time_Visual_Understanding.csv
+    # [0, query_time] full prefix -- experiment only
+    context_mode: full_prefix
+    input_modality: visual_only
+    # official = benchmark question + options + "Please select the correct
+    # answer." (no MMDuet2-era "Answer with the option letter only.")
+    prompt_style: official
+
+output:
+  root: outputs/evaluation
+  resume: false
+  save_raw_prediction: false
+
+evaluation:
+  fail_on_missing_video: true
+
+kv_metrics:
+  enable: true
+  mode: paired
+  dir: outputs/kv_metrics
+  run_name: sb_real_qwen25vl
+  attention_backend: eager
+  anchor: last_user_token
+  profile_wallclock: true
+  scope: hermes_managed
+  summary_token_mode: identity_only

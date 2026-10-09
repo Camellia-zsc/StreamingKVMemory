@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "task": "EPM",
+    "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+    "realtime": 215,
+    "question": "Who did I communicate to  when chopping egg plants?",
+    "answer": "a person with blue shirt",
+    "options": [
+      "a person with brown shirt",
+      "a person with green shirt",
+      "a person with blue shirt",
+      "a person with white shirt"
+    ],
+    "gt": 2
+  },
+  {
+    "id": 631,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 172,
+    "question": "Where is the biggest giant standing?",
+    "answer": "In the back of other four giants.",
+    "options": [
+      "In the front of other four giants.",
+      "In the back of other four giants.",
+      "In the left of other four giants.",
+      "In the right of other four giants."
+    ],
+    "gt": 1
+  }
+]

@@ -1,0 +1,44 @@
+# Same as eval_ovo_soft_ablation_80.yaml but restricted to the 11 samples where
+# the SDPA and FA2 soft-protocol runs disagreed (for token-level diagnostics).
+model:
+  name: MMDuet2
+  model_path: models/MMDuet2
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 16
+  attn_implementation: auto
+  max_side: 336
+  offline_fps: 0.5
+  offline_max_side: 336
+  offline_max_frames: 4
+
+memory:
+  method: hermes
+  compression:
+    enabled: false
+    budget: 6000
+
+ovo:
+  must_reply: false
+  constrain_mcq_first_token: false
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_soft_protocol_ablation_diag11.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+  streamingbench:
+    enabled: false
+  videomme:
+    enabled: false
+
+output:
+  root: outputs/evaluation
+  resume: true
+  save_raw_prediction: true
+
+evaluation:
+  fail_on_missing_video: true

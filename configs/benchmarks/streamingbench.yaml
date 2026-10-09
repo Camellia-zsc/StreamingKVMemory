@@ -1,0 +1,13 @@
+enabled: true
+video_root: datasets/StreamingBench
+annotations:
+  real_time_visual_understanding: datasets/StreamingBench/StreamingBench/Real_Time_Visual_Understanding.csv
+  contextual_understanding: datasets/StreamingBench/StreamingBench/Contextual_Understanding.csv
+  omni_source_understanding: datasets/StreamingBench/StreamingBench/Omni_Source_Understanding.csv
+  sequential_question_answering: datasets/StreamingBench/StreamingBench/Sequential_Question_Answering.csv
+  proactive_output: datasets/StreamingBench/StreamingBench/Proactive_Output.csv
+  # proactive_output_50: datasets/StreamingBench/StreamingBench/Proactive_Output_50.csv
+context_mode: main_60s
+context_time: 60
+proactive_protocol: official_polling
+input_modality: visual_only

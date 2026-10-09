@@ -1,0 +1,1194 @@
+[
+    {
+        "id": 483,
+        "task": "ASI",
+        "video": "COIN/Hf2AisK1wHY.mp4",
+        "realtime": 136,
+        "question": "What does the person do after load the wheel",
+        "answer": "pump up the tire",
+        "options": [
+            "pump up the tire",
+            "unload the wheel",
+            "load the tire",
+            "load the inner tube"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 491,
+        "task": "ASI",
+        "video": "COIN/8jRoZSWibM0.mp4",
+        "realtime": 105,
+        "question": "What does the person do after wipe screen again",
+        "answer": "remove the label",
+        "options": [
+            "remove the label",
+            "wipe screen",
+            "place label",
+            "paste protector on the screen"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 498,
+        "task": "ASI",
+        "video": "cross_task/WtBh0I9Lmmk.mp4",
+        "realtime": 268.73,
+        "question": "What does the person do after add spices",
+        "answer": "pack cucumbers in jar",
+        "options": [
+            "pack cucumbers in jar",
+            "add sugar",
+            "pour water",
+            "add salt"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 506,
+        "task": "ASI",
+        "video": "cross_task/0mnuAqJCg5c.mp4",
+        "realtime": 190.98,
+        "question": "What does the person do before add ham",
+        "answer": "add onion",
+        "options": [
+            "add kimchi",
+            "add onion",
+            "add rice",
+            "stir mixture"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 514,
+        "task": "ASI",
+        "video": "cross_task/3kIs5YyLd_M.mp4",
+        "realtime": 129.44,
+        "question": "What does the person do after dip bread in mixture",
+        "answer": "put bread in pan",
+        "options": [
+            "put bread in pan",
+            "whisk mixture",
+            "add vanilla extract",
+            "pour egg"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 522,
+        "task": "ASI",
+        "video": "hirest/FcRrnEpE4x8_165_439.mp4",
+        "realtime": 136,
+        "question": "What does the person do before flash the garment",
+        "answer": "pull on ink",
+        "options": [
+            "do over print",
+            "cure it",
+            "do quick flash",
+            "pull on ink"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 529,
+        "task": "ASI",
+        "video": "hirest/2YZHJOLuA8o_63_216.mp4",
+        "realtime": 60,
+        "question": "What does the person do before cover empty places on leaf",
+        "answer": "spread leafs on pan",
+        "options": [
+            "add little bit salt on salt",
+            "add pepper on leaf",
+            "add spray on top",
+            "spread leafs on pan"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 537,
+        "task": "ASI",
+        "video": "hirest/9pybtCnEqEQ_28_125.mp4",
+        "realtime": 82,
+        "question": "What does the person do after put together flowers and grass",
+        "answer": "draw leaves",
+        "options": [
+            "draw leaves",
+            "using pencil draw grass",
+            "paint the flowers with different colors",
+            "make grass using bottom of the"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 545,
+        "task": "ASI",
+        "video": "youcook2/_xIIpW8iMps.mp4",
+        "realtime": 309,
+        "question": "What does the person do before add tomato puree and cook until it starts to lose oil",
+        "answer": "add onion and cook until golden brown",
+        "options": [
+            "heat the pan for about fifteen minutes",
+            "add salt chili powder and green chili",
+            "put the daal into sauce pan",
+            "add onion and cook until golden brown"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 553,
+        "task": "ASI",
+        "video": "youcook2/iq7aiv9MPvA.mp4",
+        "realtime": 277,
+        "question": "What does the person do after cover it with another piece of tortilla",
+        "answer": "layer the mixture cheese and tortillas",
+        "options": [
+            "put the tortilla on the sauce",
+            "cook beef cube steak chopped yellow onion red enchilada sauce cheese beans in a pot",
+            "layer the mixture cheese and tortillas",
+            "pour the mixture on it and top with shredded cheese"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 560,
+        "task": "ASI",
+        "video": "youcook2/PYjrGqPHGhY.mp4",
+        "realtime": 87,
+        "question": "What does the person do before mix together an egg butter and butter milk",
+        "answer": "mix together flour baking powder baking soda salt and sugar",
+        "options": [
+            "pour some batter onto the pan",
+            "mix together flour baking powder baking soda salt and sugar",
+            "spray the pan with a nonstick spray",
+            "after bubbles form flip the pancake"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 568,
+        "task": "ASI",
+        "video": "youcook2/T_fPNAK5Ecg.mp4",
+        "realtime": 225,
+        "question": "What does the person do after add milk to the onions and stir",
+        "answer": "mash the potatoes with a masher",
+        "options": [
+            "add salt pepper and flour to the onions",
+            "add butter and onions to the pan",
+            "mash the potatoes with a masher"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 576,
+        "task": "ASI",
+        "video": "youcook2/OF-Zh5FrxGc.mp4",
+        "realtime": 329,
+        "question": "What does the person do before drain the pasta",
+        "answer": "pour in the vodka and tomato sauce",
+        "options": [
+            "add red pepper to the sauce",
+            "add the parsley to the sauce",
+            "add cream to the sauce",
+            "pour in the vodka and tomato sauce"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 584,
+        "task": "ASI",
+        "video": "youcook2/ysUibvVCpP8.mp4",
+        "realtime": 222,
+        "question": "What does the person do before take the shrimp and cut it into two halves",
+        "answer": "mix 2 tbsp of chili garlic sauce with the hoisin and keep it aside",
+        "options": [
+            "add rice noodles on top and roll it without breaking and fold the spring roll",
+            "repeat the process for all the other rolls and serve",
+            "mix 2 tbsp of chili garlic sauce with the hoisin and keep it aside",
+            "place the shrimp lettuce cucumber coriander sauce carrots red pepper and crab meat on the rice paper"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 591,
+        "task": "ASI",
+        "video": "star/STAFD.mp4",
+        "realtime": 46,
+        "question": "Which object did the person eat before they threw the clothes?",
+        "answer": "The sandwich.",
+        "options": [
+            "The sandwich.",
+            "The medicine.",
+            "The refrigerator.",
+            "The towel."
+        ],
+        "gt": 0
+    },
+    {
+        "id": 599,
+        "task": "ASI",
+        "video": "star/F5TL0.mp4",
+        "realtime": 21,
+        "question": "Which object did the person close before they took the cup/glass/bottle?",
+        "answer": "The refrigerator.",
+        "options": [
+            "The door.",
+            "The refrigerator.",
+            "The closet/cabinet.",
+            "The paper/notebook."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 607,
+        "task": "ASI",
+        "video": "star/9X208.mp4",
+        "realtime": 30,
+        "question": "What did the person do to the towel before opening the door?",
+        "answer": "Took.",
+        "options": [
+            "Threw.",
+            "Took.",
+            "Put down.",
+            "Tidied up."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 615,
+        "task": "ASI",
+        "video": "star/TAZGF.mp4",
+        "realtime": 10,
+        "question": "Which object did the person put down before they sat on the sofa/couch?",
+        "answer": "The food.",
+        "options": [
+            "The picture.",
+            "The bed.",
+            "The book.",
+            "The food."
+        ],
+        "gt": 3
+    },
+    {
+        "id": 622,
+        "task": "ASI",
+        "video": "star/ZCH1J.mp4",
+        "realtime": 5,
+        "question": "What happened before the person held the food?",
+        "answer": "Opened the bag.",
+        "options": [
+            "Took the sandwich.",
+            "Opened the bag.",
+            "Tidied up the table.",
+            "Put down the picture."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 630,
+        "task": "ASI",
+        "video": "star/PV745.mp4",
+        "realtime": 60,
+        "question": "What happened before the person put on the clothes?",
+        "answer": "Took the box.",
+        "options": [
+            "Opened the bag.",
+            "Threw the pillow.",
+            "Took the laptop.",
+            "Took the box."
+        ],
+        "gt": 3
+    },
+    {
+        "id": 297,
+        "task": "HLD",
+        "video": "Ego4D/clips/93231c7e-1cf4-4a20-b1f8-9cc9428915b2.mp4",
+        "question": "what did I put in the black dustbin?",
+        "answer": "Unable to answer",
+        "options": [
+            "empty water bottles",
+            "Unable to answer",
+            "old newspapers",
+            "food scraps"
+        ],
+        "gt": 1,
+        "realtime": 371
+    },
+    {
+        "id": 307,
+        "task": "HLD",
+        "video": "Ego4D/clips/6e73e4ca-d147-40ea-8587-035e8f2850c7.mp4",
+        "question": "Did I move the ruler one last time?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "no"
+        ],
+        "gt": 0,
+        "realtime": 1130
+    },
+    {
+        "id": 316,
+        "task": "HLD",
+        "video": "Ego4D/clips/2c1724ce-f438-4d63-a699-8a7f65e3cbd9.mp4",
+        "question": "What colour is the paper I put on the table",
+        "answer": "Unable to answer",
+        "options": [
+            "blue",
+            "black",
+            "Unable to answer",
+            "yellow"
+        ],
+        "gt": 2,
+        "realtime": 380
+    },
+    {
+        "id": 326,
+        "task": "HLD",
+        "video": "Ego4D/clips/70cef020-51e7-429e-af75-f87747b3daad.mp4",
+        "question": "what did I put in the plastic container?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "flour",
+            "water",
+            "oil"
+        ],
+        "gt": 0,
+        "realtime": 229
+    },
+    {
+        "id": 336,
+        "task": "HLD",
+        "video": "Ego4D/clips/d7b8f461-db42-4365-9f89-83f923528293.mp4",
+        "question": "What mushroom did i chop",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "shiitake mushroom",
+            "white mushroom"
+        ],
+        "gt": 0,
+        "realtime": 71
+    },
+    {
+        "id": 346,
+        "task": "HLD",
+        "video": "Ego4D/clips/37440fa1-f1a7-4781-b89b-e0dd385af2eb.mp4",
+        "question": "Where did i put the plywood?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "on the table",
+            "on the floor",
+            "beside the stares"
+        ],
+        "gt": 0,
+        "realtime": 337
+    },
+    {
+        "id": 355,
+        "task": "HLD",
+        "video": "Ego4D/clips/1c865785-9ac6-4f16-baa4-97405aacad6a.mp4",
+        "question": "Where did I put the frying pan?",
+        "answer": "Unable to answer",
+        "options": [
+            "In the sink",
+            "Unable to answer",
+            "On the floor",
+            "On top of the cabinet"
+        ],
+        "gt": 1,
+        "realtime": 320
+    },
+    {
+        "id": 365,
+        "task": "HLD",
+        "video": "Ego4D/clips/742355b3-3123-4671-99e9-8a4612204b9c.mp4",
+        "question": "where did I walked in the garden",
+        "answer": "Unable to answer",
+        "options": [
+            "in the backyard",
+            "Unable to answer",
+            "inside the house",
+            "outside the house"
+        ],
+        "gt": 1,
+        "realtime": 121
+    },
+    {
+        "id": 375,
+        "task": "HLD",
+        "video": "Ego4D/clips/bccb07af-db56-4deb-9a5c-4fb2ee8a356f.mp4",
+        "question": "Where was the bike seat before I opened it?",
+        "answer": "Unable to answer",
+        "options": [
+            "on the table",
+            "Unable to answer",
+            "in the box",
+            "on the scooter"
+        ],
+        "gt": 1,
+        "realtime": 255
+    },
+    {
+        "id": 385,
+        "task": "HLD",
+        "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+        "question": "Did I close the bottle of oil?",
+        "answer": "Unable to answer",
+        "options": [
+            "No, I left it open",
+            "Unable to answer",
+            "The video doesn't show this"
+        ],
+        "gt": 1,
+        "realtime": 359
+    },
+    {
+        "id": 394,
+        "task": "HLD",
+        "video": "Ego4D/clips/da074982-6ab1-4d82-a35b-20d08e9bbe0b.mp4",
+        "question": "Did i press the  switch button?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "no"
+        ],
+        "gt": 0,
+        "realtime": 285
+    },
+    {
+        "id": 404,
+        "task": "HLD",
+        "video": "Ego4D/clips/c9885f38-fa92-42f0-b998-42b1139b5b5f.mp4",
+        "question": "Where is the small grey keg?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "floor",
+            "shelf",
+            "tool box"
+        ],
+        "gt": 0,
+        "realtime": 385
+    },
+    {
+        "id": 414,
+        "task": "HLD",
+        "video": "OpenEQA/002-hm3d-wcojb4TFT35.mp4",
+        "question": "What is the green object in the left of the garage?",
+        "answer": "Unable to answer",
+        "options": [
+            "A rope",
+            "Unable to answer",
+            "A ladder",
+            "A tool box"
+        ],
+        "gt": 1,
+        "realtime": 37
+    },
+    {
+        "id": 424,
+        "task": "HLD",
+        "video": "OpenEQA/017-hm3d-Dd4bFSTQ8gi.mp4",
+        "question": "Where can I get drinking water in the kitchen?",
+        "answer": "Unable to answer",
+        "options": [
+            "There is no drinking water in the kitchen.",
+            "From the tap in the kitchen",
+            "Unable to answer",
+            "From the faucet in the bathroom"
+        ],
+        "gt": 2,
+        "realtime": 38
+    },
+    {
+        "id": 433,
+        "task": "HLD",
+        "video": "OpenEQA/014-hm3d-rsggHU7g7dh.mp4",
+        "question": "What is the blue object above the glass doors?",
+        "answer": "Unable to answer",
+        "options": [
+            "A light",
+            "A painting",
+            "A vase",
+            "Unable to answer"
+        ],
+        "gt": 3,
+        "realtime": 5
+    },
+    {
+        "id": 443,
+        "task": "HLD",
+        "video": "OpenEQA/015-hm3d-5jp3fCRSRjc.mp4",
+        "question": "What color is the staircase railing?",
+        "answer": "Unable to answer",
+        "options": [
+            "Black",
+            "Unable to answer",
+            "Light brown",
+            "White"
+        ],
+        "gt": 1,
+        "realtime": 8
+    },
+    {
+        "id": 453,
+        "task": "HLD",
+        "video": "OpenEQA/016-hm3d-nrA1tAA17Yp.mp4",
+        "question": "What color are the air vents below the window?",
+        "answer": "Unable to answer",
+        "options": [
+            "White",
+            "Black",
+            "Unable to answer",
+            "Brown"
+        ],
+        "gt": 2,
+        "realtime": 7
+    },
+    {
+        "id": 463,
+        "task": "HLD",
+        "video": "OpenEQA/017-hm3d-Dd4bFSTQ8gi.mp4",
+        "question": "What color is the front door?",
+        "answer": "Unable to answer",
+        "options": [
+            "Black",
+            "Blue",
+            "White",
+            "Unable to answer"
+        ],
+        "gt": 3,
+        "realtime": 26
+    },
+    {
+        "id": 472,
+        "task": "HLD",
+        "video": "OpenEQA/011-hm3d-bzCsHPLDztK.mp4",
+        "question": "What color pattern is on the pillow on the black couch?",
+        "answer": "Unable to answer",
+        "options": [
+            "A solid color pattern",
+            "A plaid color pattern",
+            "A striped color pattern",
+            "Unable to answer"
+        ],
+        "gt": 3,
+        "realtime": 50
+    },
+    {
+        "id": 482,
+        "task": "HLD",
+        "video": "OpenEQA/007-hm3d-bxsVRursffK.mp4",
+        "question": "Are the doors downstairs closed?",
+        "answer": "Unable to answer",
+        "options": [
+            "No, one door downstairs is open.",
+            "Yes, door downstairs is closed.",
+            "Unable to answer"
+        ],
+        "gt": 2,
+        "realtime": 51
+    },
+    {
+        "id": 993,
+        "task": "ATR",
+        "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+        "realtime": 279,
+        "question": "What is the color of the dog?",
+        "answer": "Black.",
+        "options": [
+            "White.",
+            "Black.",
+            "Pink.",
+            "Brown."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 999,
+        "task": "ATR",
+        "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=2.mp4",
+        "realtime": 1528,
+        "question": "What is the color of the tip of the weapon the man is holding?",
+        "answer": "Cyan",
+        "options": [
+            "Red",
+            "Cyan",
+            "Yellow",
+            "Green"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1005,
+        "task": "ATR",
+        "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=6.mp4",
+        "realtime": 284,
+        "question": "What is the box made of?",
+        "answer": "Wood.",
+        "options": [
+            "Metal.",
+            "Plastic.",
+            "Stone.",
+            "Wood."
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1011,
+        "task": "ATR",
+        "video": "Ego4D/video/f801d038-60b9-4957-bd9d-87263202cbb7.mp4",
+        "realtime": 69.1,
+        "question": "What pattern is on the pot in the middle?",
+        "answer": "The pot in the middle has a geometric pattern of black triangles.",
+        "options": [
+            "The pot in the middle has a geometric pattern of black triangles.",
+            "The pot in the middle has a floral design with red roses.",
+            "The pot in the middle is adorned with a checkered design in green and yellow.",
+            "The pot in the middle has a stripe pattern with blue and white lines."
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1017,
+        "task": "ATR",
+        "video": "Ego4D/video/f5613680-1dbc-4945-8a77-949098bc13dd.mp4",
+        "realtime": 124.0,
+        "question": "What is the bottle made of?",
+        "answer": "Made of plastic.",
+        "options": [
+            "Stainless steel.",
+            "Plastic.",
+            "Aluminum.",
+            "Glass."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1023,
+        "task": "ATR",
+        "video": "Ego4D/video/c984e958-2f3a-4260-b155-d59a443350bf.mp4",
+        "realtime": 186.6,
+        "question": "What pattern is on the rectangular mat?",
+        "answer": "The rectangular mat has blue and white stripes.",
+        "options": [
+            "The mat has red and yellow polka dots.",
+            "The mat has blue and white stripes.",
+            "The mat has a floral pattern with pink and orange flowers.",
+            "The mat has green and brown checkered squares."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1029,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/311.mp4",
+        "realtime": 525.93,
+        "question": "What shape can be observed in the object displayed?",
+        "answer": "The object has a circular shape.",
+        "options": [
+            "The object has a triangular shape.",
+            "The object has an oval shape.",
+            "The object has a rectangular shape.",
+            "The object has a circular shape."
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1035,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/254.mp4",
+        "realtime": 237.9,
+        "question": "What color is the soup in the bowl that appears in the scene?",
+        "answer": "The soup is green.",
+        "options": [
+            "The soup is green.",
+            "The soup is red.",
+            "The soup is yellow.",
+            "The soup is blue."
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1041,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/235.mp4",
+        "realtime": 242.21,
+        "question": "What kind of texture does the water appear to have?",
+        "answer": "The water appears to have a slightly murky texture with bubbles visible.",
+        "options": [
+            "The water appears to have a clear texture with a smooth surface.",
+            "The water appears to have a rough texture with visible waves.",
+            "The water appears to have a slightly murky texture with bubbles visible.",
+            "The water appears to have a frothy texture with some foam on top."
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1047,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/53.mp4",
+        "realtime": 907.91,
+        "question": "What shape is the piece of bread on the plate?",
+        "answer": "The piece of bread is shaped like a bone.",
+        "options": [
+            "The piece of bread is shaped like a bone.",
+            "The piece of bread is shaped like a star.",
+            "The piece of bread is shaped like a circle.",
+            "The piece of bread is shaped like a triangle."
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1054,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/81.mp4",
+        "realtime": 2.04,
+        "question": "What is the expression on his face?",
+        "answer": "He appears to be focused or concentrating.",
+        "options": [
+            "He seems anxious.",
+            "He looks surprised.",
+            "He appears to be focused.",
+            "He appears joyful."
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1060,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/32.mp4",
+        "realtime": 726.28,
+        "question": "What type of trees are surrounding the area with the sign?",
+        "answer": "The trees are palm trees.",
+        "options": [
+            "The trees are palm trees.",
+            "The trees are oak trees.",
+            "The trees are maple trees.",
+            "The trees are birch trees."
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1066,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/97.mp4",
+        "realtime": 190.22,
+        "question": "What color is the material being used?",
+        "answer": "The material being tied is orange.",
+        "options": [
+            "The material in question is green.",
+            "The color of the material is red.",
+            "The material being tied is orange.",
+            "The material being used is blue."
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1072,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/62.mp4",
+        "realtime": 10.28,
+        "question": "What type of pattern is on the girl's shirt?",
+        "answer": "The shirt has a bold, solid pink color with white text.",
+        "options": [
+            "The shirt has a striped pattern in pink and white.",
+            "The shirt features a floral pattern in pink and white.",
+            "The shirt has a polka dot design in pink and white.",
+            "The shirt is solid pink with white text."
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1078,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/24.mp4",
+        "realtime": 565.57,
+        "question": "What type of accessory is the person wearing on their head?",
+        "answer": "The person is wearing ski goggles.",
+        "options": [
+            "The person is wearing a sun visor.",
+            "The person is wearing ski goggles.",
+            "The person is wearing a beanie.",
+            "The person is wearing a bucket hat."
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1084,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/197.mp4",
+        "realtime": 166.63,
+        "question": "What is the material of the containers visible?",
+        "answer": "The containers are made of plastic.",
+        "options": [
+            "Metal.",
+            "Ceramic.",
+            "Glass.",
+            "Plastic."
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1090,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/40.mp4",
+        "realtime": 38.73,
+        "question": "What is the tool made of?",
+        "answer": "The tool is made of metal and plastic.",
+        "options": [
+            "The tool comprises aluminum and silicone.",
+            "The tool consists of stainless steel and carbon fiber.",
+            "The tool is made of metal and plastic.",
+            "The tool is constructed from wood and rubber."
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1096,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/13.mp4",
+        "realtime": 227.32,
+        "question": "What type of clothing is he wearing?",
+        "answer": "He is wearing a light-colored shirt.",
+        "options": [
+            "dark-colored pants",
+            "light-colored shirt",
+            "denim jeans",
+            "woolen jacket"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1102,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/226.mp4",
+        "realtime": 953.62,
+        "question": "What type of clothing is the person wearing?",
+        "answer": "The person is wearing a wetsuit and a yellow life vest.",
+        "options": [
+            "Summer dress",
+            "Wetsuit",
+            "Business suit",
+            "Bikini"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1108,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/308.mp4",
+        "realtime": 335.21,
+        "question": "What is the item being carried by the person in the suit?",
+        "answer": "A square picture frame",
+        "options": [
+            "A square picture frame",
+            "A rectangular picture frame",
+            "A circular picture frame",
+            "A triangular picture frame"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1319,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/106.mp4",
+        "realtime": 54.2,
+        "question": "What are the names listed on each lane of the pool?",
+        "answer": "Rapsys, Di Cola, De Tullio, Popovici, Djakovic, Maertens, Auboek, Markos",
+        "options": [
+            "Rapsys, Di Cola, De Tullio, Popovici, Djakovic, Maertens, Auboek, Markos",
+            "Leclos, Vekovishchev, Seto, Irie, Grothe, Schooling, Solaeche, Lazor",
+            "Fraser-Holmes, Krutohzmov, Meyer, Hosszu, Kromowidjojo, Stupp, Ohashi, King",
+            "Lochte, Dressel, Phelps, Cseh, Chalmers, Larkin, Peaty, Kenderesi"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1327,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/305.mp4",
+        "realtime": 282.92,
+        "question": "What is written on the jacket of the person sitting on the bed?",
+        "answer": "CARPENTER 361850",
+        "options": [
+            "CARPENTER 361850",
+            "CARPENTER 316512",
+            "CATERPILLAR 031789",
+            "CATERPILLAR 316920"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1335,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/263.mp4",
+        "realtime": 416.82,
+        "question": "What is the text on the package?",
+        "answer": "SOUR PATCH",
+        "options": [
+            "SKITTLES",
+            "Colgate",
+            "SOUR PATCH",
+            "Breyers"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1342,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/234.mp4",
+        "realtime": 308.91,
+        "question": "What name and number are visible on the back of this person's jacket?",
+        "answer": "MOTEEA, 18",
+        "options": [
+            "LAFFONT, 00",
+            "TOM, 21",
+            "MOTEEA, 18",
+            "GUS, 83"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1350,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/216.mp4",
+        "realtime": 73.29,
+        "question": "What is the number of the bus?",
+        "answer": "3352",
+        "options": [
+            "4433",
+            "3321",
+            "3333",
+            "3352"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1358,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/272.mp4",
+        "realtime": 33.3,
+        "question": "What does the label on the bottle with the blue cap say?",
+        "answer": "Distilled Water H2O",
+        "options": [
+            "Distilled Water H2O",
+            "Electrolyte Water Hydration",
+            "Demi Water",
+            "Purified Water pH 7"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1366,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/172.mp4",
+        "realtime": 62.96,
+        "question": "What brand is displayed on the front of the box?",
+        "answer": "AMD",
+        "options": [
+            "ASUS",
+            "NVIDIA",
+            "AMD",
+            "Corsair"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1374,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/59.mp4",
+        "realtime": 143.92,
+        "question": "What text appears on the white shirts worn by the players in the dugout?",
+        "answer": "The shirts display the word 'Privateers.'",
+        "options": [
+            "The shirts display 'Marauders.'",
+            "The shirts display 'Privateers.'",
+            "The shirts display 'Corsairs.'",
+            "The shirts display 'Buccaneers.'"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1381,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/231.mp4",
+        "realtime": 103.92,
+        "question": "What is the text on the screen now?",
+        "answer": "PREPARING THE VEGAN EGG MIXTURE",
+        "options": [
+            "PREPARING THE VEGAN EGG MIXTURE",
+            "Vegan Eggless Eggs",
+            "WHAT DID I JUST HEAR",
+            "IS THIS EVEN REAL"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1389,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/65.mp4",
+        "realtime": 45.67,
+        "question": "What is the current score displayed on the scoreboard?",
+        "answer": "Patriots BC 8, Rivers Hoopers 13",
+        "options": [
+            "Patriots BC 5, Rivers Hoopers 13",
+            "Patriots BC 8, Rivers Hoopers 13",
+            "Patriots BC 35, Rivers Hoopers 20",
+            "Patriots BC 15, Rivers Hoopers 18"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1397,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/31.mp4",
+        "realtime": 472.67,
+        "question": "What is the height range of the eagle?",
+        "answer": "70cm to 90cm",
+        "options": [
+            "60cm to 79cm",
+            "60cm to 90cm",
+            "70cm to 90cm",
+            "41cm to 70cm"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1405,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/192.mp4",
+        "realtime": 151.33,
+        "question": "What is the winning amount mentioned?",
+        "answer": "WIN $2,260,831",
+        "options": [
+            "WIN $2,848,500",
+            "WIN $1,754,920",
+            "WIN $3,105,672",
+            "WIN $2,260,831"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1412,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/219.mp4",
+        "realtime": 105.47,
+        "question": "Who is introducing the other three to Dancing?",
+        "answer": "Chase Hughes",
+        "options": [
+            "Greg Hartley",
+            "Scott Rouse",
+            "Chase Hughes",
+            "Mark Bowden."
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1420,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/15.mp4",
+        "realtime": 648.12,
+        "question": "What does the text above them say?",
+        "answer": "Empire Hotpot & Cantonese Cuisine",
+        "options": [
+            "Peking Palace Restaurant",
+            "Shanghai Noodle House",
+            "Golden Dragon BBQ & Dim Sum",
+            "Empire Hotpot & Cantonese Cuisine"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 1428,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/286.mp4",
+        "realtime": 36.0,
+        "question": "What is written on the red truck's license plate?",
+        "answer": "K243BM66",
+        "options": [
+            "K243BM66",
+            "M659SR77",
+            "J547QP89",
+            "L732NT45"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1436,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/243.mp4",
+        "realtime": 97.05,
+        "question": "What is written on this note?",
+        "answer": "FEED ME!",
+        "options": [
+            "FEED ME!",
+            "WASH ME!",
+            "USE ME!",
+            "CLEAN ME!"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1444,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/8.mp4",
+        "realtime": 184.07,
+        "question": "What text can be seen on the tablecloth?",
+        "answer": "The brand is 'blue rescue'",
+        "options": [
+            "black ops",
+            "blue rescue",
+            "yellow zone",
+            "white flag"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1451,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/88.mp4",
+        "realtime": 968.97,
+        "question": "What's written on the side of the white plastic bag?",
+        "answer": "The text reads 'lululemon'.",
+        "options": [
+            "Nike",
+            "lululemon",
+            "Adidas",
+            "Under Armour"
+        ],
+        "gt": 1
+    },
+    {
+        "id": 1459,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/149.mp4",
+        "realtime": 218.95,
+        "question": "What text is being shown on the screen?",
+        "answer": "RESTRICTING THE PLAY AREA IN 1 MINUTE",
+        "options": [
+            "PLAY AREA CLOSURE COUNTDOWN: 1 MINUTE",
+            "AREA LIMITATION BEGINS IN ONE MINUTE",
+            "RESTRICTING THE PLAY AREA IN 1 MINUTE",
+            "PLAY AREA CONFINEMENT INITIATES IN 60 SECONDS"
+        ],
+        "gt": 2
+    },
+    {
+        "id": 1467,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/234.mp4",
+        "realtime": 191.84,
+        "question": "What is the name visible on the front go-karts?",
+        "answer": "One of the go-karts has the name 'MOTEEA 18' visible on it.",
+        "options": [
+            "One of the go-karts has the name 'MOTEEA 181' visible on it.",
+            "One of the go-karts has the name 'MOTEEA 19' visible on it.",
+            "One of the go-karts has the name 'MOTEEA 18' visible on it.",
+            "One of the go-karts has the name 'MOTEEA 21' visible on it."
+        ],
+        "gt": 2
+    }
+]

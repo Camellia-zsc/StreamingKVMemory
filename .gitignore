@@ -1,0 +1,89 @@
+# ==================================================
+# Model weights / checkpoints (exclude by type + explicit dirs)
+# ==================================================
+/models/
+/checkpoints/
+/hf_cache/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+pytorch_model*.bin
+model-*.bin
+
+# ==================================================
+# Raw media / archives (keep source code + small metadata)
+# ==================================================
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.partaa
+*.partab
+*.partac
+*.partad
+*.partae
+*.tar.part*
+
+# Specific media / video directories (do NOT use a bare data/ or datasets/)
+OVO-Bench/data/chunked_videos/
+OVO-Bench/data/chunked_videos_epm_stu/
+OVO-Bench/data/src_videos/
+OVO-Bench/data/smoke/
+OVO-Bench/data/ovobench/videos/
+datasets/Video-MME/videos/
+datasets/Video-MME/archives/
+
+# ==================================================
+# Run artifacts / outputs
+# ==================================================
+outputs/
+results/
+logs/
+runs/
+wandb/
+tensorboard/
+profiling/
+OVO-Bench/results/
+OVO-Bench/results_*/
+
+# ==================================================
+# Python
+# ==================================================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==================================================
+# Environments / caches
+# ==================================================
+.env
+.env.*
+.venv/
+venv/
+.cache/
+
+# ==================================================
+# IDE / OS
+# ==================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==================================================
+# Temporary / backup
+# ==================================================
+*.bak*
+*.before_*
+*.tmp
+*.swp
+*~

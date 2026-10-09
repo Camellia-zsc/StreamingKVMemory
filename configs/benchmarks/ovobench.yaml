@@ -1,0 +1,3 @@
+enabled: true
+annotation: OVO-Bench/data/ovo_all_tasks_smoke.json
+chunked_dir: OVO-Bench/data/chunked_videos

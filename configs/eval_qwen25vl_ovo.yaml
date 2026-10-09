@@ -1,0 +1,41 @@
+# Base config for the Qwen2.5-VL OVO-Bench full-eval + diagnostic subset.
+#
+# - Overall/per-category accuracy uses ALL OVO samples of the selected group.
+# - The paired decision diagnostics (k / P_gold / ΔP_gold / margins / CC-CW-WC-WW)
+#   are only produced for the per-category "first 10 unique videos" manifest.
+# Budget is set per run by ovo-diag-run; this file only fixes the model/protocol.
+model:
+  name: Qwen2.5-VL
+  backend: qwen2_5_vl
+  model_path: models/Qwen2.5-VL-7B-Instruct
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 16
+  attn_implementation: auto
+  max_side: 336
+  capture_option_logits: true
+
+mcq_decode_mode: official
+
+memory:
+  method: hermes
+  compression:
+    enabled: true
+    budget: 2000
+
+benchmarks:
+  ovobench:
+    enabled: true
+    annotation: OVO-Bench/data/ovo_bench_new.json
+    chunked_dir: OVO-Bench/data/chunked_videos
+
+output:
+  root: outputs/qwen25vl_full_eval
+  resume: true
+  save_raw_prediction: true
+
+evaluation:
+  fail_on_missing_video: true

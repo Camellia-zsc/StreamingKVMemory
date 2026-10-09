@@ -1,0 +1,301 @@
+[
+  {
+    "id": 0,
+    "task": "EPM",
+    "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+    "realtime": 215,
+    "question": "Who did I communicate to  when chopping egg plants?",
+    "answer": "a person with blue shirt",
+    "options": [
+      "a person with brown shirt",
+      "a person with green shirt",
+      "a person with blue shirt",
+      "a person with white shirt"
+    ],
+    "gt": 2
+  },
+  {
+    "id": 1,
+    "task": "EPM",
+    "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+    "realtime": 244,
+    "question": "What did I drop in the bowl in the sink?",
+    "answer": "eggplant",
+    "options": [
+      "meat",
+      "onion",
+      "eggplant",
+      "carrot"
+    ],
+    "gt": 2
+  },
+  {
+    "id": 2,
+    "task": "EPM",
+    "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+    "realtime": 265,
+    "question": "Where is the microwave? ",
+    "answer": "on the table",
+    "options": [
+      "on the table",
+      "in the cabinet",
+      "on the counter",
+      "on the sink"
+    ],
+    "gt": 0
+  },
+  {
+    "id": 3,
+    "task": "EPM",
+    "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+    "realtime": 369,
+    "question": "What food did I chop?",
+    "answer": "meat",
+    "options": [
+      "eggplant",
+      "meat",
+      "onion",
+      "carrot"
+    ],
+    "gt": 1
+  },
+  {
+    "id": 4,
+    "task": "EPM",
+    "video": "Ego4D/clips/4ba774a8-cd2a-4889-9971-cc91f5c1afd4.mp4",
+    "realtime": 119,
+    "question": "Where was the paper towel before I picked it?",
+    "answer": "on the table",
+    "options": [
+      "on the counter",
+      "on the cupboard",
+      "on the table",
+      "in the dish washer"
+    ],
+    "gt": 2
+  },
+  {
+    "id": 5,
+    "task": "EPM",
+    "video": "Ego4D/clips/4ba774a8-cd2a-4889-9971-cc91f5c1afd4.mp4",
+    "realtime": 185,
+    "question": "What drawer did I pull?",
+    "answer": "dish washer",
+    "options": [
+      "dish washer",
+      "microwave",
+      "cupboard",
+      "fridge"
+    ],
+    "gt": 0
+  },
+  {
+    "id": 6,
+    "task": "EPM",
+    "video": "Ego4D/clips/4ba774a8-cd2a-4889-9971-cc91f5c1afd4.mp4",
+    "realtime": 193,
+    "question": "Where Was the plate before I picked it?",
+    "answer": "on the cupboard",
+    "options": [
+      "on the counter",
+      "on the cupboard",
+      "on the table",
+      "in the dish washer"
+    ],
+    "gt": 1
+  },
+  {
+    "id": 7,
+    "task": "EPM",
+    "video": "Ego4D/clips/4ba774a8-cd2a-4889-9971-cc91f5c1afd4.mp4",
+    "realtime": 249,
+    "question": "What did I pour in the container?",
+    "answer": "bread crumbs",
+    "options": [
+      "flour",
+      "bread crumbs",
+      "salt",
+      "pepper"
+    ],
+    "gt": 1
+  },
+  {
+    "id": 8,
+    "task": "EPM",
+    "video": "Ego4D/clips/534d9bf8-bdc5-4236-8dba-dd7b894218d2.mp4",
+    "realtime": 7,
+    "question": "How many poker cards did I hold pick?",
+    "answer": "five",
+    "options": [
+      "two",
+      "three",
+      "four",
+      "five",
+      "six"
+    ],
+    "gt": 3
+  },
+  {
+    "id": 9,
+    "task": "EPM",
+    "video": "Ego4D/clips/534d9bf8-bdc5-4236-8dba-dd7b894218d2.mp4",
+    "realtime": 40,
+    "question": "who did I interact with when I was playing poker?",
+    "answer": "a man wearing a black shirt",
+    "options": [
+      "a woman wearing blue shirt",
+      "a man wearing a black shirt",
+      "a woman wearing a white shirt",
+      "a man wearing a red shirt"
+    ],
+    "gt": 1
+  },
+  {
+    "id": 631,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 172,
+    "question": "Where is the biggest giant standing?",
+    "answer": "In the back of other four giants.",
+    "options": [
+      "In the front of other four giants.",
+      "In the back of other four giants.",
+      "In the left of other four giants.",
+      "In the right of other four giants."
+    ],
+    "gt": 1
+  },
+  {
+    "id": 632,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 488,
+    "question": "In what direction is the man in white attacking the monkey?",
+    "answer": "From the top.",
+    "options": [
+      "From the front.",
+      "From the top.",
+      "From the left.",
+      "From the bottom."
+    ],
+    "gt": 1
+  },
+  {
+    "id": 633,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 171,
+    "question": "How many giants monster are there?",
+    "answer": "5",
+    "options": [
+      "5",
+      "7",
+      "4",
+      "6"
+    ],
+    "gt": 0
+  },
+  {
+    "id": 634,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 472,
+    "question": "How many monkeys did I summon?",
+    "answer": "6",
+    "options": [
+      "7",
+      "6",
+      "8",
+      "4"
+    ],
+    "gt": 1
+  },
+  {
+    "id": 635,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=2.mp4",
+    "realtime": 560,
+    "question": "Which direction am I moving?",
+    "answer": "Move forward while moving up",
+    "options": [
+      "Move backward while moving up",
+      "Move forward while moving down",
+      "Move backward while moving down",
+      "Move forward while moving up"
+    ],
+    "gt": 3
+  },
+  {
+    "id": 636,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=2.mp4",
+    "realtime": 1480,
+    "question": "Which direction am I moving?",
+    "answer": "Move forward while moving down",
+    "options": [
+      "Move forward while moving up",
+      "Move forward while moving down",
+      "Move backward while moving up",
+      "Move backward while moving down"
+    ],
+    "gt": 1
+  },
+  {
+    "id": 637,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=2.mp4",
+    "realtime": 1415,
+    "question": "What is the position of the gourd relative to me now?",
+    "answer": "On my top",
+    "options": [
+      "On my down",
+      "On my right",
+      "On my left",
+      "On my top"
+    ],
+    "gt": 3
+  },
+  {
+    "id": 638,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=2.mp4",
+    "realtime": 1336,
+    "question": "What is the position of the monkey relative to the character/me now?",
+    "answer": "In front of me.",
+    "options": [
+      "In front of me.",
+      "Behind me.",
+      "On my left.",
+      "On my right."
+    ],
+    "gt": 0
+  },
+  {
+    "id": 639,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=2.mp4",
+    "realtime": 1236,
+    "question": "What is the position of bamboos relative to the wooden gate I'm heading toward?",
+    "answer": "On either side of the door",
+    "options": [
+      "On the top of the door",
+      "On the bottom of the door",
+      "On the left of the door",
+      "On either side of the door"
+    ],
+    "gt": 3
+  },
+  {
+    "id": 640,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=3.mp4",
+    "realtime": 12,
+    "question": "Which road did I take?",
+    "answer": "The road on the right.",
+    "options": [
+      "The road on the left.",
+      "The road on the right."
+    ],
+    "gt": 1
+  }
+]

@@ -1,0 +1,277 @@
+[
+  {
+    "id": 0,
+    "task": "EPM",
+    "video": "Ego4D/clips/ec4a3ba3-eb00-4aa8-9b41-36043ece98f7.mp4",
+    "realtime": 215,
+    "question": "Who did I communicate to  when chopping egg plants?",
+    "answer": "a person with blue shirt",
+    "options": [
+      "a person with brown shirt",
+      "a person with green shirt",
+      "a person with blue shirt",
+      "a person with white shirt"
+    ],
+    "gt": 2
+  },
+  {
+    "id": 483,
+    "task": "ASI",
+    "video": "COIN/Hf2AisK1wHY.mp4",
+    "realtime": 136,
+    "question": "What does the person do after load the wheel",
+    "answer": "pump up the tire",
+    "options": [
+      "pump up the tire",
+      "unload the wheel",
+      "load the tire",
+      "load the inner tube"
+    ],
+    "gt": 0
+  },
+  {
+    "id": 297,
+    "task": "HLD",
+    "video": "Ego4D/clips/93231c7e-1cf4-4a20-b1f8-9cc9428915b2.mp4",
+    "question": "what did I put in the black dustbin?",
+    "answer": "Unable to answer",
+    "options": [
+      "empty water bottles",
+      "Unable to answer",
+      "old newspapers",
+      "food scraps"
+    ],
+    "gt": 1,
+    "realtime": 371
+  },
+  {
+    "id": 631,
+    "task": "STU",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 172,
+    "question": "Where is the biggest giant standing?",
+    "answer": "In the back of other four giants.",
+    "options": [
+      "In the front of other four giants.",
+      "In the back of other four giants.",
+      "In the left of other four giants.",
+      "In the right of other four giants."
+    ],
+    "gt": 1
+  },
+  {
+    "id": 809,
+    "task": "OJR",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 172,
+    "question": "What is under the monkey?",
+    "answer": "A piece of cloud.",
+    "options": [
+      "The trees",
+      "A piece of rock.",
+      "A piece of cloud.",
+      "The ground."
+    ],
+    "gt": 2
+  },
+  {
+    "id": 993,
+    "task": "ATR",
+    "video": "YouTube_Games/PLJ3VIGhVd3r8Int6IZT_v3S_BzG9RVfiG&index=1.mp4",
+    "realtime": 279,
+    "question": "What is the color of the dog?",
+    "answer": "Black.",
+    "options": [
+      "White.",
+      "Black.",
+      "Pink.",
+      "Brown."
+    ],
+    "gt": 1
+  },
+  {
+    "id": 1210,
+    "task": "ACR",
+    "video": "Ego4D/video/e1fa5de2-eb21-41a3-85b3-882a3652df42.mp4",
+    "realtime": 201.93,
+    "question": "What is he doing with that tool?",
+    "answer": "He is inflating the tire with the tool.",
+    "options": [
+      "He is repairing a bicycle.",
+      "She is using a jack to lift a car.",
+      "He is tightening bolts on a wheel.",
+      "He is inflating a tire."
+    ],
+    "gt": 3
+  },
+  {
+    "id": 1319,
+    "task": "OCR",
+    "video": "AutoEvalMetaData/106.mp4",
+    "realtime": 54.2,
+    "question": "What are the names listed on each lane of the pool?",
+    "answer": "Rapsys, Di Cola, De Tullio, Popovici, Djakovic, Maertens, Auboek, Markos",
+    "options": [
+      "Rapsys, Di Cola, De Tullio, Popovici, Djakovic, Maertens, Auboek, Markos",
+      "Leclos, Vekovishchev, Seto, Irie, Grothe, Schooling, Solaeche, Lazor",
+      "Fraser-Holmes, Krutohzmov, Meyer, Hosszu, Kromowidjojo, Stupp, Ohashi, King",
+      "Lochte, Dressel, Phelps, Cseh, Chalmers, Larkin, Peaty, Kenderesi"
+    ],
+    "gt": 0
+  },
+  {
+    "id": 1109,
+    "task": "FPD",
+    "video": "Ego4D/video/005efbab-c314-48d8-8dd9-bfc1263ec5df.mp4",
+    "realtime": 88.43,
+    "question": "What is this person going to do?",
+    "answer": "The person is going to drill a hole into the wires or material in front of them.",
+    "options": [
+      "The individual intends to plant a tree.",
+      "The person is going to drill a hole.",
+      "The person is planning to paint a mural.",
+      "The person is preparing to change a tire."
+    ],
+    "gt": 1
+  },
+  {
+    "id": 1558,
+    "task": "REC",
+    "video": "perception_test/video_4017.mp4",
+    "activity": "breaking something",
+    "start_times": [
+      6
+    ],
+    "end_times": [
+      17
+    ],
+    "test_info": [
+      {
+        "realtime": 17,
+        "count": 1
+      },
+      {
+        "realtime": 19,
+        "count": 1
+      },
+      {
+        "realtime": 32.0,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 1516,
+    "task": "SSR",
+    "video": "COIN/xZecGPPhbHE.mp4",
+    "tutorial": "PutOnHairExtensions",
+    "all_steps": [
+      "pull up the hair to reserve place for the hair extensions",
+      "put on the hair extensions",
+      "put down the hair and comb"
+    ],
+    "start_time": [
+      25,
+      31,
+      107
+    ],
+    "end_time": [
+      30,
+      49,
+      117
+    ],
+    "test_info": [
+      {
+        "realtime": 27,
+        "step": "pull up the hair to reserve place for the hair extensions",
+        "type": 1
+      },
+      {
+        "realtime": 30,
+        "step": "pull up the hair to reserve place for the hair extensions",
+        "type": 1
+      },
+      {
+        "realtime": 26,
+        "step": "put on the hair extensions",
+        "type": 0
+      },
+      {
+        "realtime": 29,
+        "step": "put on the hair extensions",
+        "type": 0
+      },
+      {
+        "realtime": 33,
+        "step": "put on the hair extensions",
+        "type": 1
+      },
+      {
+        "realtime": 36,
+        "step": "put on the hair extensions",
+        "type": 1
+      },
+      {
+        "realtime": 49,
+        "step": "put on the hair extensions",
+        "type": 1
+      },
+      {
+        "realtime": 102,
+        "step": "put down the hair and comb",
+        "type": 0
+      },
+      {
+        "realtime": 105,
+        "step": "put down the hair and comb",
+        "type": 0
+      },
+      {
+        "realtime": 109,
+        "step": "put down the hair and comb",
+        "type": 1
+      },
+      {
+        "realtime": 112,
+        "step": "put down the hair and comb",
+        "type": 1
+      },
+      {
+        "realtime": 117,
+        "step": "put down the hair and comb",
+        "type": 1
+      }
+    ]
+  },
+  {
+    "id": 1468,
+    "task": "CRR",
+    "video": "MovieNet/tt0048028.mp4",
+    "question": "The woman in a black coat walks towards the direction of the black car, what action does she take to the car?",
+    "answer": "She walks past the car.",
+    "ask_time": 297,
+    "clue_time": 308,
+    "test_info": [
+      {
+        "realtime": 297,
+        "type": 0
+      },
+      {
+        "realtime": 302,
+        "type": 0
+      },
+      {
+        "realtime": 310,
+        "type": 1
+      },
+      {
+        "realtime": 318,
+        "type": 1
+      },
+      {
+        "realtime": 338,
+        "type": 1
+      }
+    ]
+  }
+]

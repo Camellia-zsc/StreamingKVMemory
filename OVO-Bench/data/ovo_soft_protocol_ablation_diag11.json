@@ -1,0 +1,167 @@
+[
+    {
+        "id": 483,
+        "task": "ASI",
+        "video": "COIN/Hf2AisK1wHY.mp4",
+        "realtime": 136,
+        "question": "What does the person do after load the wheel",
+        "answer": "pump up the tire",
+        "options": [
+            "pump up the tire",
+            "unload the wheel",
+            "load the tire",
+            "load the inner tube"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 491,
+        "task": "ASI",
+        "video": "COIN/8jRoZSWibM0.mp4",
+        "realtime": 105,
+        "question": "What does the person do after wipe screen again",
+        "answer": "remove the label",
+        "options": [
+            "remove the label",
+            "wipe screen",
+            "place label",
+            "paste protector on the screen"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 522,
+        "task": "ASI",
+        "video": "hirest/FcRrnEpE4x8_165_439.mp4",
+        "realtime": 136,
+        "question": "What does the person do before flash the garment",
+        "answer": "pull on ink",
+        "options": [
+            "do over print",
+            "cure it",
+            "do quick flash",
+            "pull on ink"
+        ],
+        "gt": 3
+    },
+    {
+        "id": 537,
+        "task": "ASI",
+        "video": "hirest/9pybtCnEqEQ_28_125.mp4",
+        "realtime": 82,
+        "question": "What does the person do after put together flowers and grass",
+        "answer": "draw leaves",
+        "options": [
+            "draw leaves",
+            "using pencil draw grass",
+            "paint the flowers with different colors",
+            "make grass using bottom of the"
+        ],
+        "gt": 0
+    },
+    {
+        "id": 297,
+        "task": "HLD",
+        "video": "Ego4D/clips/93231c7e-1cf4-4a20-b1f8-9cc9428915b2.mp4",
+        "question": "what did I put in the black dustbin?",
+        "answer": "Unable to answer",
+        "options": [
+            "empty water bottles",
+            "Unable to answer",
+            "old newspapers",
+            "food scraps"
+        ],
+        "gt": 1,
+        "realtime": 371
+    },
+    {
+        "id": 346,
+        "task": "HLD",
+        "video": "Ego4D/clips/37440fa1-f1a7-4781-b89b-e0dd385af2eb.mp4",
+        "question": "Where did i put the plywood?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "on the table",
+            "on the floor",
+            "beside the stares"
+        ],
+        "gt": 0,
+        "realtime": 337
+    },
+    {
+        "id": 404,
+        "task": "HLD",
+        "video": "Ego4D/clips/c9885f38-fa92-42f0-b998-42b1139b5b5f.mp4",
+        "question": "Where is the small grey keg?",
+        "answer": "Unable to answer",
+        "options": [
+            "Unable to answer",
+            "floor",
+            "shelf",
+            "tool box"
+        ],
+        "gt": 0,
+        "realtime": 385
+    },
+    {
+        "id": 443,
+        "task": "HLD",
+        "video": "OpenEQA/015-hm3d-5jp3fCRSRjc.mp4",
+        "question": "What color is the staircase railing?",
+        "answer": "Unable to answer",
+        "options": [
+            "Black",
+            "Unable to answer",
+            "Light brown",
+            "White"
+        ],
+        "gt": 1,
+        "realtime": 8
+    },
+    {
+        "id": 463,
+        "task": "HLD",
+        "video": "OpenEQA/017-hm3d-Dd4bFSTQ8gi.mp4",
+        "question": "What color is the front door?",
+        "answer": "Unable to answer",
+        "options": [
+            "Black",
+            "Blue",
+            "White",
+            "Unable to answer"
+        ],
+        "gt": 3,
+        "realtime": 26
+    },
+    {
+        "id": 1035,
+        "task": "ATR",
+        "video": "AutoEvalMetaData/254.mp4",
+        "realtime": 237.9,
+        "question": "What color is the soup in the bowl that appears in the scene?",
+        "answer": "The soup is green.",
+        "options": [
+            "The soup is green.",
+            "The soup is red.",
+            "The soup is yellow.",
+            "The soup is blue."
+        ],
+        "gt": 0
+    },
+    {
+        "id": 1381,
+        "task": "OCR",
+        "video": "AutoEvalMetaData/231.mp4",
+        "realtime": 103.92,
+        "question": "What is the text on the screen now?",
+        "answer": "PREPARING THE VEGAN EGG MIXTURE",
+        "options": [
+            "PREPARING THE VEGAN EGG MIXTURE",
+            "Vegan Eggless Eggs",
+            "WHAT DID I JUST HEAR",
+            "IS THIS EVEN REAL"
+        ],
+        "gt": 0
+    }
+]

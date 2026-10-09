@@ -1,0 +1,60 @@
+# Lightweight benchmark config for the Qwen2.5-VL backend.
+#
+# StreamingBench and Video-MME run here with the plain benchmark path: normal
+# streaming prefill + optional HERMES compaction + normal generation. There is
+# NO paired KV diagnostic (no ΔP/ΔM, no CC/CW/WC/WW, no RAM/AORE/JS/KL, no
+# trajectory probes, no extra logits sidecar) -- only accuracy + counts.
+#
+# Budget is supplied per run via --memory_budget / --memory_method.
+model:
+  name: Qwen2.5-VL
+  backend: qwen2_5_vl
+  model_path: models/Qwen2.5-VL-7B-Instruct
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 16
+  attn_implementation: auto
+  max_side: 336
+  offline_fps: 0.5
+  offline_max_side: 336
+  offline_max_frames: 4
+
+mcq_decode_mode: official
+
+memory:
+  method: hermes
+  compression:
+    enabled: true
+    budget: 2000
+
+benchmarks:
+  streamingbench:
+    enabled: true
+    video_root: datasets/StreamingBench
+    annotations:
+      real_time_visual_understanding: datasets/StreamingBench/StreamingBench/Real_Time_Visual_Understanding.csv
+    context_mode: full_prefix
+    input_modality: visual_only
+    prompt_style: official
+  videomme:
+    enabled: true
+    annotation: datasets/Video-MME/annotations/medium_questions.jsonl
+    video_root: datasets/Video-MME/videos
+    archive_map: datasets/Video-MME/annotations/medium_archive_map_first5.json
+    allowed_archives:
+      - videos_chunked_01.zip
+      - videos_chunked_02.zip
+      - videos_chunked_03.zip
+      - videos_chunked_04.zip
+      - videos_chunked_05.zip
+
+output:
+  root: outputs/qwen25vl_full_eval
+  resume: true
+  save_raw_prediction: true
+
+evaluation:
+  fail_on_missing_video: true

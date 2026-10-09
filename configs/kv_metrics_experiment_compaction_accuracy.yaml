@@ -1,0 +1,40 @@
+# Compaction-accuracy experiment (fixed budget = 2000).
+#
+# Structural note: in the current OVO-Bench adapter, backward (EPM/ASI/HLD) and
+# realtime (STU/OJR/ATR/ACR/OCR/FPD) items expose exactly ONE query each; only
+# the forward tasks (REC/SSR/CRR) are nested-query. We therefore select
+# backward/realtime samples (as requested) for the longest-run trajectory and
+# the per-query task curve, and report the query-count consequence explicitly.
+experiment_name: compaction_accuracy_bw_rt
+base_config: configs/eval_kv_metrics_bw_rt_base.yaml
+benchmark: ovobench
+output_root: outputs/kv_metrics/experiments
+
+# backward + realtime only (labels come from the adapter's OVO_TASK_GROUPS)
+task_scope:
+  - backward
+  - realtime
+num_samples: 6
+target_total_queries: 100
+sample_selection_seed: 20260930
+metrics_root: outputs/kv_metrics
+min_queries: 1
+min_effective_compactions: 2
+# Feasibility guard: the eager Full-KV oracle is repeated for every sample, so
+# cap the video length (query_time ~= clip length for OVO timestamp tasks).
+max_query_time: 200
+
+# fixed budget only -- budget sweep is a separate experiment
+budgets:
+  - 2000
+
+detailed_trajectory:
+  strategy: longest_query_only
+  probe_after_effective_compaction: true
+  include_pre_first_compaction_baseline: true
+
+task_only:
+  include_all_queries: true
+
+metric_backend: eager
+profile_wallclock: true
