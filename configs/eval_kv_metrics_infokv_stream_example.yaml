@@ -1,0 +1,103 @@
+# Example config: one-key switch from HERMES to the InfoKV-inspired streaming
+# video memory. Only the ``memory:`` block differs from a HERMES config --
+# ``method: hermes`` <-> ``method: infokv_stream``.
+#
+# NOTE: this round is CPU-only. The InfoKV GPU KV integration is a separate
+# stage; this config documents the intended interface and is what the memory
+# factory validates. Do NOT expect it to run GPU inference yet.
+model:
+  name: Qwen2.5-VL
+  backend: qwen2_5_vl
+  model_path: models/Qwen2.5-VL-7B-Instruct
+  ovo_root: OVO-Bench
+
+inference:
+  sample_fps: 0.5
+  frames_per_turn: 2
+  max_new_tokens: 8
+  attn_implementation: auto
+  max_side: 336
+  capture_option_logits: true
+
+mcq_decode_mode: official
+
+memory:
+  # --- the one key that switches memory methods ---------------------------
+  method: infokv_stream
+  # Unchanged HERMES configs keep working: just set method: hermes (or omit it).
+
+  # Total managed VISUAL token budget (excludes the protected prompt prefix).
+  # Invariant: recent.budget + long_term.budget <= total_visual_budget.
+  total_visual_budget: 2000
+
+  # Recent Buffer: high fidelity, most recent visual tokens. Overflow retires
+  # into the long-term candidate pool (it is never simply dropped).
+  recent:
+    enabled: true
+    budget: 400
+
+  # Information-aware long-term cache: Top-K by fused score.
+  long_term:
+    budget: 1600
+
+  compression:
+    # Compact the long-term cache every N chunks (not every chunk).
+    interval_chunks: 4
+    # First version never fabricates summary tokens.
+    summary_strategy: none
+
+  scoring:
+    # score = w_N * TemporalNovelty + w_D * LayerEvolution + w_A * A^V2V
+    # (A^V2V: Vision-to-Vision recent-context importance, LiveVLM-inspired)
+    temporal_novelty:
+      enabled: true
+      weight: 0.35
+      reference: recent_mean     # or: previous
+      reference_chunks: 4
+    layer_evolution:
+      enabled: true
+      weight: 0.35
+      # Real GPU capture reads ONLY these two layers (never output_hidden_states).
+      # null -> integration defaults: (2, num_layers-4).
+      layer_a: null
+      layer_b: null
+    v2v:
+      enabled: true
+      weight: 0.30
+      # The recent visual observation window (query source) = the last N visual
+      # tokens of the Recent Buffer. Default 32 follows LiveVLM v2's window_len.
+      observation_tokens: 32
+      aggregate_queries: mean
+      aggregate_heads: mean
+      # Single attention layer whose already-computed Q/K drive V2V.
+      # null -> integration default: num_layers // 2.
+      layer: null
+
+benchmarks:
+  streamingbench:
+    enabled: true
+    video_root: datasets/StreamingBench
+    annotations:
+      real_time_visual_understanding: datasets/StreamingBench/StreamingBench/Real_Time_Visual_Understanding.csv
+    context_mode: full_prefix
+    input_modality: visual_only
+    prompt_style: official
+
+output:
+  root: outputs/evaluation
+  resume: false
+  save_raw_prediction: false
+
+evaluation:
+  fail_on_missing_video: true
+
+kv_metrics:
+  enable: true
+  mode: paired
+  dir: outputs/kv_metrics
+  run_name: sb_real_qwen25vl_infokv_stream
+  attention_backend: eager
+  anchor: last_user_token
+  profile_wallclock: true
+  scope: hermes_managed
+  summary_token_mode: identity_only

@@ -24,6 +24,7 @@ from typing import Any, Dict, Optional, Type
 
 from .base import KVMemoryMethod
 from .hermes_adapter import HermesMemoryMethod
+from .infokv_stream import InfoKVStreamMemory
 from .schemas import DEFAULT_METHOD, MemoryMethodConfig
 
 
@@ -32,6 +33,7 @@ LOG = logging.getLogger("evaluate_all")
 
 _METHOD_REGISTRY: Dict[str, Type[KVMemoryMethod]] = {
     "hermes": HermesMemoryMethod,
+    "infokv_stream": InfoKVStreamMemory,
 }
 
 
