@@ -34,10 +34,12 @@ visual Q/K states are available the method falls back to an injected
 Eviction is a real eviction: no summary tokens are generated
 (``summary_strategy: none``).
 
-Selection semantics (v1): **global token identity**. ``N / D / A^V2V`` produce a
-single set of retained visual token ids ``I_keep``; every Transformer layer
-gathers the *same* visual positions. (HERMES, by contrast, keeps layer-wise
-heterogeneous retained indices.)
+Selection semantics are configurable. In the default mode, ``N / D / A^V2V``
+produce one retained visual token set ``I_keep`` shared by every Transformer
+layer. With ``scoring.layerwise_retention_enabled: true``, ``N`` and ``A^V2V``
+remain shared signals while ``D`` is evaluated and ranked independently per
+layer; each layer then gathers its own retained positions, like HERMES. Recent
+and long-term remain temporal regions in both modes.
 """
 
 from __future__ import annotations
