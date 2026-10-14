@@ -75,6 +75,7 @@ class InfoKVStreamMemory(KVMemoryMethod):
         self.total_budget = int(config.total_visual_budget or 0)
         self.interval = int(config.compression.interval_chunks)
         self.observation_tokens = int(config.scoring.v2v_observation_tokens)
+        self.layerwise_retention = bool(config.scoring.layerwise_retention_enabled)
 
         # Effective weights: disabled signals contribute nothing, then the
         # remaining weights are renormalized to 1.0 (with a warning if they did
@@ -117,6 +118,12 @@ class InfoKVStreamMemory(KVMemoryMethod):
         self.last_retention_ratio: Optional[float] = None
         self.compaction_log: List[Dict[str, Any]] = []
         self._last_compaction_sidecar: List[Dict[str, Any]] = []
+        # In layerwise mode each Transformer layer owns an independent
+        # long-term retained set.  The Recent Buffer remains shared/protected.
+        self.layer_ids: List[int] = []
+        self.layer_retained_ids: Dict[int, set[int]] = {}
+        self.last_compaction_tokens_before_by_layer: Dict[int, int] = {}
+        self.last_compaction_tokens_after_by_layer: Dict[int, int] = {}
         # Transient-overshoot bookkeeping (read-only statistics).
         self.peak_managed_tokens = 0
         self.peak_budget_overshoot_tokens = 0
@@ -160,6 +167,41 @@ class InfoKVStreamMemory(KVMemoryMethod):
         novelty = temporal_novelty(chunk_embedding, reference, eps=self.eps)
 
         # --- D: layer-wise representation evolution (per token) ---------- #
+        evolution_by_layer: Dict[int, np.ndarray] = {}
+        if self.layerwise_retention and observation.layer_evolution_by_layer:
+            evolution_by_layer = {
+                int(layer): np.asarray(values, dtype=np.float32).reshape(-1)
+                for layer, values in observation.layer_evolution_by_layer.items()
+            }
+            for layer, score in evolution_by_layer.items():
+                if score.shape[0] != n:
+                    raise ValueError(
+                        f"layer_evolution produced {score.shape[0]} values for {n} tokens"
+                    )
+            self.layer_ids = sorted(evolution_by_layer)
+            for layer in self.layer_ids:
+                self.layer_retained_ids.setdefault(layer, set())
+        elif self.layerwise_retention and observation.layer_hidden:
+            hidden = {
+                int(layer): np.asarray(value, dtype=np.float32)
+                for layer, value in observation.layer_hidden.items()
+            }
+            layer_ids = sorted(hidden)
+            for left, right in zip(layer_ids, layer_ids[1:]):
+                score = layer_evolution(hidden[left], hidden[right], eps=self.eps)
+                if score.shape[0] != n:
+                    raise ValueError(
+                        f"layer_evolution produced {score.shape[0]} values for {n} tokens"
+                    )
+                # Associate the representation change entering `right` with
+                # the layer whose KV will be scored.  This gives every layer a
+                # genuine per-token D signal while keeping N/A shared.
+                evolution_by_layer[right] = score
+            if layer_ids:
+                self.layer_ids = layer_ids
+                for layer in layer_ids:
+                    self.layer_retained_ids.setdefault(layer, set())
+
         if (
             self.config.scoring.layer_evolution_enabled
             and observation.shallow_hidden is not None
@@ -177,6 +219,12 @@ class InfoKVStreamMemory(KVMemoryMethod):
                 )
         else:
             evolution = np.zeros(n, dtype=np.float32)
+        if self.layerwise_retention and evolution_by_layer:
+            # Retain a useful method-agnostic sidecar value while selection
+            # uses the true per-layer values below.
+            evolution = np.mean(
+                np.stack(list(evolution_by_layer.values()), axis=0), axis=0
+            ).astype(np.float32)
 
         # --- A^V2V: last-window IMPORTANCE is computed at compaction time -- #
         # At observe time we only record any directly-injected score (HERMES-
@@ -196,6 +244,10 @@ class InfoKVStreamMemory(KVMemoryMethod):
                     is_visual=bool(visual_mask[i]),
                     novelty_raw=float(novelty),
                     evolution_raw=float(evolution[i]),
+                    evolution_by_layer={
+                        int(layer): float(values[i])
+                        for layer, values in evolution_by_layer.items()
+                    },
                     v2v_raw=float(injected[i]),
                     key_state=None if key_states is None else key_states[i],
                     query_state=None if query_states is None else query_states[i],
@@ -254,18 +306,36 @@ class InfoKVStreamMemory(KVMemoryMethod):
         pool = list(self.long_term) + list(self.candidates)
         pool_before = len(pool)
         tokens_before = len(self.recent) + len(pool)
+        before_by_layer = {}
+        if self.layerwise_retention and self.layer_ids:
+            candidate_ids = {r.token_id for r in self.candidates}
+            before_by_layer = {
+                layer: len(self.recent) + len(self.layer_retained_ids[layer] | candidate_ids)
+                for layer in self.layer_ids
+            }
+            tokens_before = max(before_by_layer.values())
 
         if pool:
             self._refresh_v2v(pool)
-            kept, evicted, sidecar = self._select_long_term(pool)
+            if self.layerwise_retention and self.layer_ids:
+                kept, evicted, sidecar = self._select_long_term_layerwise(pool)
+            else:
+                kept, evicted, sidecar = self._select_long_term(pool)
         else:
             kept, evicted, sidecar = [], [], []
 
         # Recent tokens are protected; annotate them for the debug sidecar.
+        # These display-only scores share one candidate scale. Rebuilding
+        # three arrays for every recent token makes a 6K cache quadratic.
+        scales = {}
+        if pool:
+            for attr in ("novelty_raw", "evolution_raw", "v2v_raw"):
+                raw = np.asarray([getattr(r, attr) for r in pool], dtype=np.float32)
+                scales[attr] = (float(raw.min()), float(raw.max()))
         for record in self.recent:
             record.selected = True
             record.retained_order = None
-            self._annotate_norms(record, pool)
+            self._annotate_norms(record, pool, scales=scales)
 
         self.long_term = sorted(kept, key=lambda r: r.original_position)
         self.candidates = []
@@ -273,18 +343,29 @@ class InfoKVStreamMemory(KVMemoryMethod):
         pool_after = len(self.long_term)
 
         tokens_after = len(self.recent) + len(self.long_term)
+        after_by_layer = {}
+        if self.layerwise_retention and self.layer_ids:
+            after_by_layer = {
+                layer: len(self.recent) + len(self.layer_retained_ids[layer])
+                for layer in self.layer_ids
+            }
+            tokens_after = max(after_by_layer.values())
         self.last_compaction_tokens_before = tokens_before
         self.last_compaction_tokens_after = tokens_after
         self.last_retention_ratio = (
             tokens_after / tokens_before if tokens_before > 0 else None
         )
-        effective = len(evicted) > 0
+        effective = (any(before_by_layer[l] > after_by_layer[l] for l in before_by_layer)
+                     if before_by_layer else len(evicted) > 0)
         if effective:
             self.effective_compaction_count += 1
 
         wallclock = time.perf_counter() - t0
         self.compression_wallclock.append(wallclock)
         self._last_compaction_sidecar = sidecar
+        if self.layerwise_retention and self.layer_ids:
+            self.last_compaction_tokens_before_by_layer = before_by_layer
+            self.last_compaction_tokens_after_by_layer = after_by_layer
         self.compaction_log.append(
             {
                 "trigger_index": self.trigger_count,
@@ -448,8 +529,78 @@ class InfoKVStreamMemory(KVMemoryMethod):
         sidecar = [r.as_sidecar() for r in kept]
         return kept, evicted, sidecar
 
+    def _select_long_term_layerwise(self, pool: Sequence[TokenRecord]):
+        """Select an independent long-term Top-K set for every Transformer layer.
+
+        N and A are shared signals (one normalization over the common pool),
+        while D is normalized and ranked separately for each layer.  The
+        managed CPU ledger stores the union so a token remains available while
+        any layer still retains it; the GPU ledger receives each set directly.
+        """
+        novelty = min_max_normalize([r.novelty_raw for r in pool], eps=self.eps)
+        v2v = min_max_normalize([r.v2v_raw for r in pool], eps=self.eps)
+        if not self.config.scoring.temporal_novelty_enabled:
+            novelty = np.zeros(len(pool), dtype=np.float32)
+        if not self.config.scoring.v2v_enabled:
+            v2v = np.zeros(len(pool), dtype=np.float32)
+
+        union: set[int] = set()
+        candidates = {int(r.token_id) for r in self.candidates}
+        layer_sidecars: Dict[int, set[int]] = {}
+        for layer in self.layer_ids:
+            eligible = self.layer_retained_ids[layer] | candidates
+            local_pool = [r for r in pool if r.token_id in eligible]
+            local_indices = [i for i, r in enumerate(pool) if r.token_id in eligible]
+            d = np.asarray(
+                [r.evolution_by_layer.get(int(layer), r.evolution_raw) for r in local_pool],
+                dtype=np.float32,
+            )
+            d_norm = min_max_normalize(d, eps=self.eps)
+            if not self.config.scoring.layer_evolution_enabled:
+                d_norm = np.zeros_like(d_norm)
+            scores = fuse_scores(novelty[local_indices], d_norm, v2v[local_indices], self.weights)
+            keep_idx = deterministic_topk(
+                scores,
+                [r.original_position for r in local_pool],
+                [r.token_id for r in local_pool],
+                self.long_term_budget,
+            )
+            ids = {int(local_pool[i].token_id) for i in keep_idx}
+            layer_sidecars[int(layer)] = ids
+            self.layer_retained_ids[int(layer)] = ids
+            union.update(ids)
+            for i, record in enumerate(local_pool):
+                # Sidecar fields describe the union score; retain the D value
+                # for the layer-specific audit in ``selected_by_layer`` below.
+                if int(record.token_id) in ids:
+                    record.selected = True
+                record.evolution_norm = float(d_norm[i])
+                record.final_score = float(scores[i])
+
+        kept = [r for r in pool if int(r.token_id) in union]
+        evicted = [r for r in pool if int(r.token_id) not in union]
+        for r in kept:
+            r.selected = True
+        for r in evicted:
+            r.selected = False
+            r.retained_order = None
+        for order, record in enumerate(sorted(kept, key=lambda r: r.original_position)):
+            record.retained_order = order
+        # Shared N/A values are useful for plotting, while D/final_score above
+        # follows the last layer.  Consumers needing exact layer membership use
+        # ``selected_by_layer``.
+        sidecar = []
+        for r in kept:
+            row = r.as_sidecar()
+            row["selected_by_layer"] = {
+                str(layer): int(r.token_id in ids)
+                for layer, ids in layer_sidecars.items()
+            }
+            sidecar.append(row)
+        return kept, evicted, sidecar
+
     def _annotate_norms(
-        self, record: TokenRecord, pool: Sequence[TokenRecord]
+        self, record: TokenRecord, pool: Sequence[TokenRecord], *, scales=None
     ) -> None:
         """Give a protected recent token a display-only normalized score.
 
@@ -463,11 +614,11 @@ class InfoKVStreamMemory(KVMemoryMethod):
             record.v2v_norm = 0.0
             record.final_score = 0.0
             return
-        record.novelty_norm = self._apply(record.novelty_raw, pool, "novelty_raw")
+        record.novelty_norm = self._apply(record.novelty_raw, pool, "novelty_raw", scales)
         record.evolution_norm = self._apply(
-            record.evolution_raw, pool, "evolution_raw"
+            record.evolution_raw, pool, "evolution_raw", scales
         )
-        record.v2v_norm = self._apply(record.v2v_raw, pool, "v2v_raw")
+        record.v2v_norm = self._apply(record.v2v_raw, pool, "v2v_raw", scales)
         record.final_score = float(
             self.weights["temporal_novelty"] * record.novelty_norm
             + self.weights["layer_evolution"] * record.evolution_norm
@@ -475,10 +626,12 @@ class InfoKVStreamMemory(KVMemoryMethod):
         )
 
     @staticmethod
-    def _apply(value: float, pool: Sequence[TokenRecord], attr: str) -> float:
-        raw = np.asarray([getattr(r, attr) for r in pool], dtype=np.float32)
-        lo = float(raw.min())
-        hi = float(raw.max())
+    def _apply(value: float, pool: Sequence[TokenRecord], attr: str, scales=None) -> float:
+        if scales is None:
+            raw = np.asarray([getattr(r, attr) for r in pool], dtype=np.float32)
+            lo, hi = float(raw.min()), float(raw.max())
+        else:
+            lo, hi = scales[attr]
         span = hi - lo
         if span < 1e-8:
             return 0.0
@@ -558,6 +711,21 @@ class InfoKVStreamMemory(KVMemoryMethod):
             if r.is_visual
         ]
 
+    def retained_visual_token_ids_by_layer(self) -> Dict[int, List[int]]:
+        """Return recent plus layer-specific long-term visual IDs."""
+        if not (self.layerwise_retention and self.layer_ids):
+            ids = self.retained_visual_token_ids()
+            return {0: ids}
+        recent = {int(r.token_id) for r in self.recent if r.is_visual}
+        positions = {r.token_id: r.original_position for r in self.managed_tokens()}
+        return {
+            int(layer): sorted(
+                recent | set(self.layer_retained_ids.get(layer, set())),
+                key=lambda token_id: positions[token_id],
+            )
+            for layer in self.layer_ids
+        }
+
     def refresh_context_states(self, provider) -> None:
         """Refresh stored per-token Q/K states from a live source.
 
@@ -579,6 +747,10 @@ class InfoKVStreamMemory(KVMemoryMethod):
     # ------------------------------------------------------------------ #
     def _update_peak(self) -> None:
         managed = len(self.recent) + len(self.long_term) + len(self.candidates)
+        if self.layerwise_retention and self.layer_ids:
+            managed = len(self.recent) + len(self.candidates) + max(
+                (len(ids) for ids in self.layer_retained_ids.values()), default=0
+            )
         self.peak_managed_tokens = max(self.peak_managed_tokens, managed)
         overshoot = max(0, managed - self.total_budget)
         self.peak_budget_overshoot_tokens = max(

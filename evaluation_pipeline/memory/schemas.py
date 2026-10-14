@@ -61,6 +61,9 @@ class TokenRecord:
     novelty_raw: float = 0.0
     evolution_raw: float = 0.0
     v2v_raw: float = 0.0
+    # Layer-specific D values.  Keys are Transformer layer indices and values
+    # are the token's representation-evolution scores at that layer.
+    evolution_by_layer: Dict[int, float] = field(default_factory=dict)
     # Normalized / fused outputs (filled at compaction time).
     novelty_norm: Optional[float] = None
     evolution_norm: Optional[float] = None
@@ -132,6 +135,14 @@ class Observation:
     token_embeddings: Optional[Any] = None  # array [n_tokens, dim]
     shallow_hidden: Optional[Any] = None  # array [n_tokens, dim]
     deep_hidden: Optional[Any] = None  # array [n_tokens, dim]
+    # Optional per-layer hidden states.  When provided, layer l's D score is
+    # computed from the representation change between l and l+1.  The legacy
+    # shallow/deep pair remains supported for the original global-set mode.
+    layer_hidden: Optional[Dict[int, Any]] = None
+    # GPU integration may provide already-computed per-layer D values.  This
+    # avoids copying every decoder hidden state to CPU while preserving the
+    # exact layer-wise representation-evolution signal.
+    layer_evolution_by_layer: Optional[Dict[int, Any]] = None
     # Direct A^V2V injection: either a sequence aligned with the chunk's tokens
     # or a ``{token_id: score}`` mapping. Used when no V2V provider is wired
     # (HERMES-style importance or synthetic scores).
@@ -186,6 +197,9 @@ class ScoringConfig:
 
     layer_evolution_enabled: bool = True
     layer_evolution_weight: float = 0.35
+    # Keep a separate long-term Top-K set for every Transformer layer.  False
+    # preserves the original InfoKVStream global retained set.
+    layerwise_retention_enabled: bool = False
     # The two Transformer layers whose hidden states define D. GPU integration
     # captures ONLY these two (never ``output_hidden_states=True``).
     layer_a: Optional[int] = None
@@ -282,6 +296,9 @@ class MemoryMethodConfig:
             ),
             layer_evolution_enabled=bool(le.get("enabled", True)),
             layer_evolution_weight=float(le.get("weight", 0.35)),
+            layerwise_retention_enabled=bool(
+                le.get("layerwise", le.get("layerwise_retention", False))
+            ),
             layer_a=_opt_int(
                 le.get("layer_a", le.get("shallow_layer"))
             ),
@@ -450,6 +467,7 @@ class MemoryMethodConfig:
                 "layer_evolution": {
                     "enabled": self.scoring.layer_evolution_enabled,
                     "weight": self.scoring.layer_evolution_weight,
+                    "layerwise": self.scoring.layerwise_retention_enabled,
                     "layer_a": self.scoring.layer_a,
                     "layer_b": self.scoring.layer_b,
                 },

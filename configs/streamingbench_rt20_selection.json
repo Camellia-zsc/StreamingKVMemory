@@ -1,0 +1,838 @@
+{
+  "selection_type": "coverage_balanced_diagnostic_subset",
+  "selection_version": "sb_real_coverage_v1",
+  "plan": "plan_b",
+  "seed": 20260930,
+  "n_videos": 20,
+  "n_queries": 100,
+  "note": "Coverage-aware diagnostic subset selected from the compressed-only exposure scan. No correctness / fidelity metric was read. NOT a random sample of StreamingBench real.",
+  "samples": [
+    {
+      "video_id": "155",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_155_1",
+        "Real-Time Visual Understanding_sample_155_2",
+        "Real-Time Visual Understanding_sample_155_3",
+        "Real-Time Visual Understanding_sample_155_4",
+        "Real-Time Visual Understanding_sample_155_5"
+      ],
+      "query_times": [
+        10.0,
+        3.0,
+        100.0,
+        169.0,
+        245.0
+      ],
+      "task_types": [
+        "Action Perception",
+        "Counting",
+        "Action Perception",
+        "Attribute Perception",
+        "Object Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        2,
+        19,
+        40
+      ],
+      "q_star_time": 245.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_155_5",
+      "k_q_star": 40,
+      "selection_score": 24.1,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B2",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +4 exact-k, 3/5 non-zero queries, +4 query-bin(s), +1 q_star-bucket, +4 task type(s), k_q_star=40"
+    },
+    {
+      "video_id": "207",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_207_1",
+        "Real-Time Visual Understanding_sample_207_2",
+        "Real-Time Visual Understanding_sample_207_3",
+        "Real-Time Visual Understanding_sample_207_4",
+        "Real-Time Visual Understanding_sample_207_5"
+      ],
+      "query_times": [
+        3.0,
+        19.0,
+        69.0,
+        196.0,
+        199.0
+      ],
+      "task_types": [
+        "Object Perception",
+        "Event Understanding",
+        "Spatial Understanding",
+        "Action Perception",
+        "Causal Reasoning"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        26,
+        28
+      ],
+      "q_star_time": 199.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_207_5",
+      "k_q_star": 28,
+      "selection_score": 15.288333,
+      "coverage_bins_contributed": [
+        "B0",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 2/5 non-zero queries, +1 query-bin(s), +1 q_star-bucket, +3 task type(s), k_q_star=28"
+    },
+    {
+      "video_id": "213",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_213_1",
+        "Real-Time Visual Understanding_sample_213_2",
+        "Real-Time Visual Understanding_sample_213_3",
+        "Real-Time Visual Understanding_sample_213_4",
+        "Real-Time Visual Understanding_sample_213_5"
+      ],
+      "query_times": [
+        16.0,
+        120.0,
+        159.0,
+        184.0,
+        241.0
+      ],
+      "task_types": [
+        "Prospective Reasoning",
+        "Prospective Reasoning",
+        "Prospective Reasoning",
+        "Prospective Reasoning",
+        "Prospective Reasoning"
+      ],
+      "effective_k_vector": [
+        0,
+        7,
+        17,
+        23,
+        39
+      ],
+      "q_star_time": 241.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_213_5",
+      "k_q_star": 39,
+      "selection_score": 8.59625,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +4 exact-k, 4/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +1 task type(s), k_q_star=39"
+    },
+    {
+      "video_id": "23",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_23_1",
+        "Real-Time Visual Understanding_sample_23_2",
+        "Real-Time Visual Understanding_sample_23_3",
+        "Real-Time Visual Understanding_sample_23_4",
+        "Real-Time Visual Understanding_sample_23_5"
+      ],
+      "query_times": [
+        18.0,
+        62.0,
+        132.0,
+        231.0,
+        258.0
+      ],
+      "task_types": [
+        "Text-Rich Understanding",
+        "Object Perception",
+        "Attribute Perception",
+        "Object Perception",
+        "Causal Reasoning"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        10,
+        35,
+        43
+      ],
+      "q_star_time": 258.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_23_5",
+      "k_q_star": 43,
+      "selection_score": 7.933333,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +3 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +1 task type(s), k_q_star=43"
+    },
+    {
+      "video_id": "376",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_376_1",
+        "Real-Time Visual Understanding_sample_376_2",
+        "Real-Time Visual Understanding_sample_376_3",
+        "Real-Time Visual Understanding_sample_376_4",
+        "Real-Time Visual Understanding_sample_376_5"
+      ],
+      "query_times": [
+        10.0,
+        46.0,
+        99.0,
+        126.0,
+        162.0
+      ],
+      "task_types": [
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        2,
+        8,
+        19
+      ],
+      "q_star_time": 162.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_376_5",
+      "k_q_star": 19,
+      "selection_score": 7.82125,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B2"
+      ],
+      "selection_reason": "greedy(plan_b): +1 exact-k, 3/5 non-zero queries, +0 query-bin(s), +1 q_star-bucket, +1 task type(s), k_q_star=19"
+    },
+    {
+      "video_id": "201",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_201_1",
+        "Real-Time Visual Understanding_sample_201_2",
+        "Real-Time Visual Understanding_sample_201_3",
+        "Real-Time Visual Understanding_sample_201_4",
+        "Real-Time Visual Understanding_sample_201_5"
+      ],
+      "query_times": [
+        12.0,
+        63.0,
+        149.0,
+        139.0,
+        205.0
+      ],
+      "task_types": [
+        "Action Perception",
+        "Event Understanding",
+        "Event Understanding",
+        "Counting",
+        "Object Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        14,
+        12,
+        30
+      ],
+      "q_star_time": 205.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_201_5",
+      "k_q_star": 30,
+      "selection_score": 5.5425,
+      "coverage_bins_contributed": [
+        "B0",
+        "B2",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +3 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=30"
+    },
+    {
+      "video_id": "266",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_266_1",
+        "Real-Time Visual Understanding_sample_266_2",
+        "Real-Time Visual Understanding_sample_266_3",
+        "Real-Time Visual Understanding_sample_266_4",
+        "Real-Time Visual Understanding_sample_266_5"
+      ],
+      "query_times": [
+        5.0,
+        63.0,
+        129.0,
+        192.0,
+        252.0
+      ],
+      "task_types": [
+        "Text-Rich Understanding",
+        "Attribute Perception",
+        "Text-Rich Understanding",
+        "Text-Rich Understanding",
+        "Attribute Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        9,
+        25,
+        41
+      ],
+      "q_star_time": 252.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_266_5",
+      "k_q_star": 41,
+      "selection_score": 5.333333,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B3",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +3 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=41"
+    },
+    {
+      "video_id": "302",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_302_1",
+        "Real-Time Visual Understanding_sample_302_2",
+        "Real-Time Visual Understanding_sample_302_3",
+        "Real-Time Visual Understanding_sample_302_4",
+        "Real-Time Visual Understanding_sample_302_5"
+      ],
+      "query_times": [
+        8.0,
+        93.0,
+        173.0,
+        247.0,
+        253.0
+      ],
+      "task_types": [
+        "Event Understanding",
+        "Event Understanding",
+        "Event Understanding",
+        "Attribute Perception",
+        "Spatial Understanding"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        20,
+        39,
+        42
+      ],
+      "q_star_time": 253.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_302_5",
+      "k_q_star": 42,
+      "selection_score": 4.38,
+      "coverage_bins_contributed": [
+        "B0",
+        "B2",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=42"
+    },
+    {
+      "video_id": "1",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_1_1",
+        "Real-Time Visual Understanding_sample_1_2",
+        "Real-Time Visual Understanding_sample_1_3",
+        "Real-Time Visual Understanding_sample_1_4",
+        "Real-Time Visual Understanding_sample_1_5"
+      ],
+      "query_times": [
+        4.0,
+        53.0,
+        82.0,
+        80.0,
+        128.0
+      ],
+      "task_types": [
+        "Object Perception",
+        "Causal Reasoning",
+        "Text-Rich Understanding",
+        "Attribute Perception",
+        "Attribute Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        0,
+        10
+      ],
+      "q_star_time": 128.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_1_5",
+      "k_q_star": 10,
+      "selection_score": 4.334167,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1"
+      ],
+      "selection_reason": "greedy(plan_b): +0 exact-k, 1/5 non-zero queries, +0 query-bin(s), +1 q_star-bucket, +0 task type(s), k_q_star=10"
+    },
+    {
+      "video_id": "476",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_476_1",
+        "Real-Time Visual Understanding_sample_476_2",
+        "Real-Time Visual Understanding_sample_476_3",
+        "Real-Time Visual Understanding_sample_476_4",
+        "Real-Time Visual Understanding_sample_476_5"
+      ],
+      "query_times": [
+        9.0,
+        15.0,
+        172.0,
+        167.0,
+        173.0
+      ],
+      "task_types": [
+        "Spatial Understanding",
+        "Text-Rich Understanding",
+        "Text-Rich Understanding",
+        "Spatial Understanding",
+        "Object Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        21,
+        19,
+        22
+      ],
+      "q_star_time": 173.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_476_5",
+      "k_q_star": 22,
+      "selection_score": 4.189643,
+      "coverage_bins_contributed": [
+        "B0",
+        "B2",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=22"
+    },
+    {
+      "video_id": "69",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_69_1",
+        "Real-Time Visual Understanding_sample_69_2",
+        "Real-Time Visual Understanding_sample_69_3",
+        "Real-Time Visual Understanding_sample_69_4",
+        "Real-Time Visual Understanding_sample_69_5"
+      ],
+      "query_times": [
+        9.0,
+        79.0,
+        144.0,
+        195.0,
+        233.0
+      ],
+      "task_types": [
+        "Action Perception",
+        "Action Perception",
+        "Action Perception",
+        "Action Perception",
+        "Action Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        13,
+        26,
+        37
+      ],
+      "q_star_time": 233.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_69_5",
+      "k_q_star": 37,
+      "selection_score": 4.06875,
+      "coverage_bins_contributed": [
+        "B0",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=37"
+    },
+    {
+      "video_id": "378",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_378_1",
+        "Real-Time Visual Understanding_sample_378_2",
+        "Real-Time Visual Understanding_sample_378_3",
+        "Real-Time Visual Understanding_sample_378_4",
+        "Real-Time Visual Understanding_sample_378_5"
+      ],
+      "query_times": [
+        10.0,
+        63.0,
+        115.0,
+        194.0,
+        230.0
+      ],
+      "task_types": [
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        6,
+        25,
+        36
+      ],
+      "q_star_time": 230.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_378_5",
+      "k_q_star": 36,
+      "selection_score": 4.051667,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B3",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=36"
+    },
+    {
+      "video_id": "254",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_254_1",
+        "Real-Time Visual Understanding_sample_254_2",
+        "Real-Time Visual Understanding_sample_254_3",
+        "Real-Time Visual Understanding_sample_254_4",
+        "Real-Time Visual Understanding_sample_254_5"
+      ],
+      "query_times": [
+        3.0,
+        52.0,
+        97.0,
+        147.0,
+        193.0
+      ],
+      "task_types": [
+        "Text-Rich Understanding",
+        "Text-Rich Understanding",
+        "Attribute Perception",
+        "Attribute Perception",
+        "Text-Rich Understanding"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        1,
+        14,
+        27
+      ],
+      "q_star_time": 193.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_254_5",
+      "k_q_star": 27,
+      "selection_score": 4.05125,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=27"
+    },
+    {
+      "video_id": "375",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_375_1",
+        "Real-Time Visual Understanding_sample_375_2",
+        "Real-Time Visual Understanding_sample_375_3",
+        "Real-Time Visual Understanding_sample_375_4",
+        "Real-Time Visual Understanding_sample_375_5"
+      ],
+      "query_times": [
+        10.0,
+        59.0,
+        108.0,
+        157.0,
+        206.0
+      ],
+      "task_types": [
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        4,
+        16,
+        30
+      ],
+      "q_star_time": 206.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_375_5",
+      "k_q_star": 30,
+      "selection_score": 3.998864,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +2 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=30"
+    },
+    {
+      "video_id": "4",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_4_1",
+        "Real-Time Visual Understanding_sample_4_2",
+        "Real-Time Visual Understanding_sample_4_3",
+        "Real-Time Visual Understanding_sample_4_4",
+        "Real-Time Visual Understanding_sample_4_5"
+      ],
+      "query_times": [
+        20.0,
+        19.0,
+        64.0,
+        131.0,
+        220.0
+      ],
+      "task_types": [
+        "Object Perception",
+        "Causal Reasoning",
+        "Text-Rich Understanding",
+        "Event Understanding",
+        "Attribute Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        10,
+        33
+      ],
+      "q_star_time": 220.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_4_5",
+      "k_q_star": 33,
+      "selection_score": 3.057256,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B4"
+      ],
+      "selection_reason": "greedy(plan_b): +1 exact-k, 2/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=33"
+    },
+    {
+      "video_id": "342",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_342_1",
+        "Real-Time Visual Understanding_sample_342_2",
+        "Real-Time Visual Understanding_sample_342_3",
+        "Real-Time Visual Understanding_sample_342_4",
+        "Real-Time Visual Understanding_sample_342_5"
+      ],
+      "query_times": [
+        10.0,
+        47.0,
+        96.0,
+        141.0,
+        182.0
+      ],
+      "task_types": [
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize",
+        "Clips Summarize"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        1,
+        12,
+        24
+      ],
+      "q_star_time": 182.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_342_5",
+      "k_q_star": 24,
+      "selection_score": 2.965,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +1 exact-k, 3/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=24"
+    },
+    {
+      "video_id": "203",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_203_1",
+        "Real-Time Visual Understanding_sample_203_2",
+        "Real-Time Visual Understanding_sample_203_3",
+        "Real-Time Visual Understanding_sample_203_4",
+        "Real-Time Visual Understanding_sample_203_5"
+      ],
+      "query_times": [
+        15.0,
+        19.0,
+        76.0,
+        134.0,
+        141.0
+      ],
+      "task_types": [
+        "Counting",
+        "Counting",
+        "Attribute Perception",
+        "Event Understanding",
+        "Event Understanding"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        11,
+        14
+      ],
+      "q_star_time": 141.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_203_5",
+      "k_q_star": 14,
+      "selection_score": 2.922197,
+      "coverage_bins_contributed": [
+        "B0",
+        "B2"
+      ],
+      "selection_reason": "greedy(plan_b): +1 exact-k, 2/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=14"
+    },
+    {
+      "video_id": "3",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_3_1",
+        "Real-Time Visual Understanding_sample_3_2",
+        "Real-Time Visual Understanding_sample_3_3",
+        "Real-Time Visual Understanding_sample_3_4",
+        "Real-Time Visual Understanding_sample_3_5"
+      ],
+      "query_times": [
+        8.0,
+        20.0,
+        69.0,
+        123.0,
+        171.0
+      ],
+      "task_types": [
+        "Object Perception",
+        "Spatial Understanding",
+        "Attribute Perception",
+        "Object Perception",
+        "Action Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        8,
+        21
+      ],
+      "q_star_time": 171.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_3_5",
+      "k_q_star": 21,
+      "selection_score": 1.926528,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +0 exact-k, 2/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=21"
+    },
+    {
+      "video_id": "210",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_210_1",
+        "Real-Time Visual Understanding_sample_210_2",
+        "Real-Time Visual Understanding_sample_210_3",
+        "Real-Time Visual Understanding_sample_210_4",
+        "Real-Time Visual Understanding_sample_210_5"
+      ],
+      "query_times": [
+        8.0,
+        19.0,
+        66.0,
+        122.0,
+        197.0
+      ],
+      "task_types": [
+        "Text-Rich Understanding",
+        "Event Understanding",
+        "Attribute Perception",
+        "Object Perception",
+        "Object Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        8,
+        28
+      ],
+      "q_star_time": 197.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_210_5",
+      "k_q_star": 28,
+      "selection_score": 1.895466,
+      "coverage_bins_contributed": [
+        "B0",
+        "B1",
+        "B3"
+      ],
+      "selection_reason": "greedy(plan_b): +0 exact-k, 2/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=28"
+    },
+    {
+      "video_id": "153",
+      "query_ids": [
+        "Real-Time Visual Understanding_sample_153_1",
+        "Real-Time Visual Understanding_sample_153_2",
+        "Real-Time Visual Understanding_sample_153_3",
+        "Real-Time Visual Understanding_sample_153_4",
+        "Real-Time Visual Understanding_sample_153_5"
+      ],
+      "query_times": [
+        5.0,
+        64.0,
+        70.0,
+        140.0,
+        135.0
+      ],
+      "task_types": [
+        "Attribute Perception",
+        "Object Perception",
+        "Action Perception",
+        "Attribute Perception",
+        "Action Perception"
+      ],
+      "effective_k_vector": [
+        0,
+        0,
+        0,
+        13,
+        11
+      ],
+      "q_star_time": 140.0,
+      "q_star_id": "Real-Time Visual Understanding_sample_153_4",
+      "k_q_star": 13,
+      "selection_score": 1.794454,
+      "coverage_bins_contributed": [
+        "B0",
+        "B2"
+      ],
+      "selection_reason": "greedy(plan_b): +0 exact-k, 2/5 non-zero queries, +0 query-bin(s), +0 q_star-bucket, +0 task type(s), k_q_star=13"
+    }
+  ],
+  "locked_plan": "plan_b",
+  "experiment_id": "sb_real_plan_b_b236e16c75d02eeb"
+}

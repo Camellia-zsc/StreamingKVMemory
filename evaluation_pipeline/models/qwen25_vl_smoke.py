@@ -479,6 +479,8 @@ def cmd_qwen_infokv_smoke(args) -> int:
         print(f"[transparency] capture_on ={answer_capture_on!r}")
         print(f"[transparency] capture_off={answer_capture_off!r}")
         print(f"[transparency] identical={transparent}")
+        if not transparent:
+            raise RuntimeError("capture changed the uncompressed answer")
 
         # ---- Phase S: real compaction -------------------------------- #
         m.reset()
@@ -541,6 +543,8 @@ def cmd_qwen_infokv_smoke(args) -> int:
         d_vals = np.array([r.evolution_raw for r in rows])
         a_vals = np.array([r.v2v_raw for r in rows])
         finite = all(np.isfinite(x).all() for x in (n_vals, d_vals, a_vals))
+        if not finite:
+            raise RuntimeError("non-finite InfoKV signal")
         print(
             "[infokv] N[%.4f,%.4f] D[%.4f,%.4f] A_v2v[%.5f,%.5f] finite=%s"
             % (n_vals.min(), n_vals.max(), d_vals.min(), d_vals.max(),
@@ -568,10 +572,13 @@ def cmd_qwen_infokv_smoke(args) -> int:
         print(f"[infokv] reply_after_compaction={reply!r}")
         if not (reply or "").strip():
             print("[infokv] WARNING: post-compaction reply was empty")
+        seen_before = integ.memory.total_seen_tokens
         before, after = _stream_once(m, chunks[-1], seconds)
         print(f"[infokv] post-compaction append: {before}->{after}")
-        if after <= before:
-            raise RuntimeError("cache did not accept a new chunk after compaction")
+        if integ.memory.total_seen_tokens <= seen_before:
+            raise RuntimeError("no new visual tokens observed after compaction")
+        if max(m._cache_lengths()) != integ.prefix_len + len(integ.ledger):
+            raise RuntimeError("cache and ledger disagree after appending")
         print("[infokv] sidecar rows=%d events=%d" % (len(integ.last_sidecar), len(events)))
         return _ok(name, f"triggers={triggers} effective={len(effective)}")
     except Exception as error:  # noqa: BLE001

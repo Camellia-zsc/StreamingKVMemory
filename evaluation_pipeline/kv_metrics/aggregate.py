@@ -104,9 +104,10 @@ def compute_paired_metrics(
             ram_h = ram_per_head(full_probs, mask, region_mask).cpu()  # [H]
             ram_raw_h = ram_per_head(full_probs, mask).cpu()  # unnormalised
             ram_per_layer[layer_idx] = summarize(ram_h.tolist())
+            ram_per_layer[layer_idx]["undefined_heads"] = int((~torch.isfinite(ram_h)).sum().item())
             ram_per_layer[layer_idx]["raw_mean"] = float(ram_raw_h.mean().item())
             ram_all_heads.extend(ram_h.tolist())
-            ram_all_layers_mean.append(float(ram_h.mean().item()))
+            ram_all_layers_mean.append(float(ram_h.nanmean().item()))
 
             # AORE on the video-region attention contribution
             o_full = region_context(
@@ -139,12 +140,14 @@ def compute_paired_metrics(
                     {
                         "event_id": compressed.event_id,
                         "layer_id": layer_idx,
-                        "ram_per_head": ram_h.tolist(),
+                        "ram_per_head": [float(v) if torch.isfinite(v) else None for v in ram_h],
                         "aore_per_head": head_aore,
                     }
                 )
 
         record["ram_mean"] = summarize(ram_all_layers_mean)["mean"]
+        record["ram_valid_heads"] = int(torch.isfinite(torch.tensor(ram_all_heads)).sum().item())
+        record["ram_undefined_heads"] = len(ram_all_heads) - record["ram_valid_heads"]
         record["ram_median"] = summarize(ram_all_heads)["median"]
         record["ram_p10"] = summarize(ram_all_heads)["p10"]
         record["ram_per_layer"] = ram_per_layer
@@ -155,7 +158,7 @@ def compute_paired_metrics(
         record["aore_per_layer"] = aore_per_layer
         record["aore_level"] = "per_head_pre_o_proj"
         if config.save_per_head:
-            record["ram_per_head"] = ram_all_heads
+            record["ram_per_head"] = [v if torch.isfinite(torch.tensor(v)) else None for v in ram_all_heads]
             record["aore_per_head"] = aore_all_heads
             record["per_head_rows"] = per_head_rows
 
@@ -229,7 +232,7 @@ def _temporal_from_pair(
     for idx in range(n_bins):
         label = bin_label(config.temporal_bins, idx)
         temporal[label] = (
-            kept_sum[idx] / (mass_sum[idx] + config.eps)
+            kept_sum[idx] / mass_sum[idx]
             if mass_sum[idx] > 0
             else None
         )

@@ -89,7 +89,7 @@ def temporal_ram(
     n_kept_map = {}
     for idx in range(n_bins):
         label = bin_label(bins, idx)
-        denom = full_mass[idx] + eps
+        denom = full_mass[idx]
         temporal[label] = (
             kept_mass[idx] / denom if full_mass[idx] > 0 else None
         )

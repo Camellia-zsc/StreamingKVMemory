@@ -273,7 +273,18 @@ def _run_pass(
 ) -> dict:
     """Run one pass (compressed or full) and return captured artifacts."""
 
-    runtime = _build_runtime(config, "hermes", compression_enabled=(mode != "full"))
+    configured_method = str(config.get("memory", {}).get("method", "hermes"))
+    # The full branch is the uncompressed oracle.  When the experiment selects
+    # InfoKVStream, use the ordinary full-cache Qwen path for that oracle; the
+    # compressed branch keeps the configured method.  Legacy HERMES configs
+    # retain their existing wrapper and only disable its pruning.
+    if mode == "full" and configured_method == "infokv_stream":
+        pass_method = "full_cache"
+        pass_compression = False
+    else:
+        pass_method = configured_method
+        pass_compression = mode != "full"
+    runtime = _build_runtime(config, pass_method, compression_enabled=pass_compression)
     chunk_module = _load_chunk_module(getattr(runtime, "backend", "mmduet2"))
 
     instrumentation = KVInstrumentation(kv_config)

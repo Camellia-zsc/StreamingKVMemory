@@ -7,6 +7,7 @@ its original attention implementation.
 """
 
 from dataclasses import dataclass
+import math
 from typing import Dict, List, Optional, Sequence, Tuple
 
 import torch
@@ -24,7 +25,7 @@ def _percentile(values: List[float], q: float) -> Optional[float]:
 
 
 def summarize(values: Sequence[float]) -> Dict[str, Optional[float]]:
-    vals = [float(v) for v in values if v is not None]
+    vals = [float(v) for v in values if v is not None and math.isfinite(float(v))]
     if not vals:
         return {
             "mean": None,
@@ -75,7 +76,13 @@ def ram_per_head(
     else:
         region = norm_mask.to(probs.device).bool().view(1, -1)
         denom = (probs * region).sum(dim=-1)
-    return kept_mass / denom.clamp_min(1e-12)
+    # Some heads assign a positive but extremely small mass to video tokens
+    # (e.g. 1e-28). An absolute epsilon would turn even complete retention
+    # into RAM ~= 0. Normalise every positive mass by its actual denominator;
+    # zero-mass heads are undefined and excluded from metric aggregation.
+    safe_denom = torch.where(denom > 0, denom, torch.ones_like(denom))
+    ratio = kept_mass / safe_denom
+    return torch.where(denom > 0, ratio, torch.full_like(ratio, float("nan")))
 
 
 # --------------------------------------------------------------------- #

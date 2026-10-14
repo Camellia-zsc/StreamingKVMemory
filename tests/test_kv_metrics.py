@@ -40,6 +40,20 @@ def test_ram_hand_example():
     assert ram[0].item() == pytest.approx(0.83, abs=1e-6)
 
 
+def test_ram_normalises_tiny_positive_visual_mass():
+    probs = torch.tensor([[1.0, 1e-28, 3e-28]])
+    region = torch.tensor([False, True, True])
+    assert ram_per_head(probs, region, region).item() == pytest.approx(1.0)
+    keep = torch.tensor([False, True, False])
+    assert ram_per_head(probs, keep, region).item() == pytest.approx(0.25)
+
+
+def test_ram_empty_region_is_undefined():
+    probs = torch.tensor([[1.0, 0.0]])
+    region = torch.tensor([False, True])
+    assert math.isnan(ram_per_head(probs, region, region).item())
+
+
 def test_ram_is_one_when_nothing_dropped():
     probs = torch.softmax(torch.randn(4, 32), dim=-1)
     mask = torch.ones(32, dtype=torch.bool)
@@ -260,6 +274,28 @@ def test_paired_metrics_identical_branches():
     assert record["js"] == pytest.approx(0.0, abs=1e-6)
     assert record["kl"] == pytest.approx(0.0, abs=1e-6)
     assert record["compression_ratio"] == pytest.approx(1.0)
+
+
+def test_paired_metrics_exclude_heads_with_no_visual_attention():
+    full = _make_artifact("zero-visual-head", 1, 4, 4, 8, 16, torch.ones(1, 10), 1.0, False)
+    # Give one head all of its probability mass to a trailing query token.
+    layer = full.layers[0]
+    layer.attn_row = torch.cat([layer.attn_row, torch.zeros(4, 1)], dim=1)
+    layer.attn_row[0, :] = 0
+    layer.attn_row[0, -1] = 1
+    full.retained_uids[0] = {u.uid for u in full.visual_regions[0].uids}
+    row = compute_paired_metrics(full, full, KVMetricConfig(enable_kv_metrics=True, save_per_head=True))
+    assert row["ram_mean"] == pytest.approx(1)
+    assert row["ram_valid_heads"] == 3
+    assert row["ram_undefined_heads"] == 1
+    assert row["ram_per_head"][0] is None
+    assert row["ram_per_layer"][0]["n"] == 3
+
+
+def test_temporal_ram_tiny_mass_is_not_damped():
+    result = temporal_ram({"v": 1e-28}, {"v": 0.0}, {"v"}, 1.0, [0.0, 10.0, 30.0])
+    assert result.temporal_ram["0_10"] == 1.0
+    assert result.temporal_ram["10_30"] is None
 
 
 def test_paired_metrics_half_drop():

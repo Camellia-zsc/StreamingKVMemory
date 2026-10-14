@@ -1198,7 +1198,7 @@ def _frozen28_dirs():
 
 
 SB_FIXED28_DIRS = []  # resolved lazily via _frozen28_dirs()
-BUDGETS = [2000, 1500, 1000, 750, 100]
+BUDGETS = [6000, 2000, 1000, 500, 200, 100, 50]
 SB_BUDGET_ROOT = "outputs/kv_metrics/experiments"
 
 

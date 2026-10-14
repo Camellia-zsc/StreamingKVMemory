@@ -452,13 +452,15 @@ class KVInstrumentation:
         original = qa_model.apply_kv_cache_pruning_strict
         self._original_methods["apply_kv_cache_pruning_strict"] = original
         num_layers = int(getattr(qa_model, "num_layers", 0))
-        long_term_threshold = int(getattr(qa_model, "long_term_threshold", num_layers))
-        long_term_flags = [i >= long_term_threshold for i in range(num_layers)]
 
         def wrapped(keep_indices_all_layers):
             # Lightweight samples do not need compaction provenance / k.
             if not self._is_diagnostic():
                 return original(keep_indices_all_layers)
+            # InfoKV temporarily suppresses summary creation for its real
+            # eviction. Observe the threshold at call time, not installation.
+            threshold = int(getattr(qa_model, "long_term_threshold", num_layers))
+            long_term_flags = [i >= threshold for i in range(num_layers)]
             trigger_time = self._current_stream_time
             bytes_before = kv_cache_bytes(qa_model.kv_cache)
             kv_before = cache_token_count(qa_model.kv_cache)

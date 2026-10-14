@@ -113,9 +113,9 @@ class ModelRuntime:
                 f"Memory policy {self.memory_method!r} has no GPU runtime wiring "
                 "yet. The pluggable CPU memory methods are "
                 f"{available_memory_methods()}; the InfoKV-inspired streaming "
-                "method (memory.method=infokv_stream) is fully implemented and "
-                "unit-tested on CPU, but its GPU KV integration is a separate "
-                "stage. Use the CPU debug CLI in the meantime: "
+                "method (memory.method=infokv_stream) has a Qwen2.5-VL GPU "
+                "integration; it requires the Qwen backend and a live model. "
+                "Use the CPU debug CLI for configuration-only checks: "
                 "`python -m evaluation_pipeline.memory.debug --help`."
             )
         if self.memory_method == "infokv_stream" and self.backend != BACKEND_QWEN25VL:

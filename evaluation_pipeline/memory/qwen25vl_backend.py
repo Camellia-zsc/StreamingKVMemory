@@ -54,6 +54,9 @@ def build_infokv_wrapper_class():
             from .factory import build_memory_method
             from .qwen25vl_gpu import InfoKVGPUIntegrator
 
+            previous = self.__dict__.get("_integrator")
+            if previous is not None:
+                previous.close()
             memory = build_memory_method(method_config=method_config)
             layer_a, layer_b, v2v_layer = _resolve_layers(
                 method_config, self.qa_model.num_layers
@@ -83,12 +86,15 @@ def build_infokv_wrapper_class():
             integrator = self.__dict__.get("_integrator")
             if integrator is None:
                 return super().stream_video_chunk(frames, seconds=seconds)
+            if seconds is None:
+                seconds = len(frames) / float(self.sample_fps or 1.0)
             meta, _ = integrator.observe_chunk(
                 frames,
                 seconds=seconds,
                 encode_fn=super().stream_video_chunk,
             )
             integrator.maybe_compact()
+            meta["cache_after"] = max(self._cache_lengths() or [0])
             return meta
 
         def reset(self):
@@ -98,6 +104,28 @@ def build_infokv_wrapper_class():
                 integrator.reset()
 
         # -- reporting ------------------------------------------------- #
+        def effective_compaction_count(self):
+            integrator = self.__dict__.get("_integrator")
+            return 0 if integrator is None else integrator.memory.effective_compaction_count
+
+        def get_compression_stats(self):
+            integrator = self.__dict__.get("_integrator")
+            if integrator is None:
+                return super().get_compression_stats()
+            stats = integrator.memory.get_stats().as_dict()
+            events = [event.as_dict() for event in integrator.events]
+            ratios = [e["visual_after"] / e["visual_before"] for e in events
+                      if e["visual_before"] > 0]
+            return {
+                **stats,
+                "peak_kv_tokens": integrator.prefix_len + stats["peak_managed_tokens"],
+                "compression_events": len(events),
+                "total_removed_tokens": sum(e["evicted"] for e in events),
+                "mean_kv_retention_ratio": sum(ratios) / len(ratios) if ratios else None,
+                "mean_kv_compression_ratio": 1 - sum(ratios) / len(ratios) if ratios else None,
+                "compression_events_detail": events,
+            }
+
         def infokv_events(self):
             integrator = self.__dict__.get("_integrator")
             return [] if integrator is None else list(integrator.events)

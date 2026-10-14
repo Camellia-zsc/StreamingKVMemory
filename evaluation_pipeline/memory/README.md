@@ -176,13 +176,15 @@ time order (no reversal). No M-RoPE / position re-index transform is invented
 here -- that is reserved for `PositionAdapter` / `Qwen25VLMRoPEAdapter` during GPU
 integration (see `position.py`).
 
-### Selection semantics (v1): global token identity
+### Selection semantics: compatibility and layerwise modes
 
-`N / D / A^V2V` produce **one global set of retained visual token ids**
-(`retained_visual_indices()`). Every Transformer layer gathers the *same* visual
-positions. HERMES, by contrast, keeps layer-wise heterogeneous retained indices.
-`RetainedIndexSet` supports both shapes so the adapter can grow later without a
-second selection path.
+With `scoring.layer_evolution.layerwise: false`, `N / D / A^V2V` produce one
+global set of retained visual token ids (`retained_visual_indices()`), and every
+Transformer layer gathers the same visual positions. With `layerwise: true`, N
+and A remain shared, D is computed from adjacent decoder-layer representations,
+and every layer runs its own deterministic Top-K. The GPU ledger and compactor
+then pass a separate keep-index list to each layer, matching HERMES's
+heterogeneous retention semantics. `RetainedIndexSet` supports both shapes.
 
 ## Eviction
 
@@ -213,7 +215,6 @@ HERMES is never forced to emit InfoKV-specific fields.
 
 The GPU integration is implemented (see below); the remaining gaps are:
 
-* layer-specific (per-layer) InfoKV selection -- v1 is global by design;
 * diversity-aware retention / LiveVLM scatter selection -- deliberately not v1;
 * summary ("KE") tokens -- v1 uses real eviction, no summary;
 * cross-checking real keys (not the write-time capture) for V2V is partially
@@ -279,8 +280,13 @@ python -m evaluation_pipeline.memory.debug \
     --recent_budget 16 \
     --compression_interval 4
 
-# Future GPU smoke test (DO NOT run in this round)
-# conda run -n hermes-qwen python -m evaluation_pipeline.evaluate \
-#     --config configs/eval_kv_metrics_infokv_stream_example.yaml \
-#     --benchmarks streamingbench --max_samples 3 --save_raw_prediction
+# GPU smoke (requires the local Qwen checkpoint and a CUDA environment)
+CUDA_VISIBLE_DEVICES=0 python -m evaluation_pipeline.models.qwen25_vl_smoke \
+    qwen-infokv-smoke --model_path models/Qwen2.5-VL-7B-Instruct \
+    --budget 300 --compression_interval 2 --chunks 6
+
+# Paired evaluation after the smoke passes
+python -m evaluation_pipeline.evaluate \
+    --config configs/eval_kv_metrics_infokv_stream_example.yaml \
+    --benchmarks streamingbench --max_samples 3 --save_raw_prediction
 ```

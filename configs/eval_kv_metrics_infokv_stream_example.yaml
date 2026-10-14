@@ -2,9 +2,8 @@
 # video memory. Only the ``memory:`` block differs from a HERMES config --
 # ``method: hermes`` <-> ``method: infokv_stream``.
 #
-# NOTE: this round is CPU-only. The InfoKV GPU KV integration is a separate
-# stage; this config documents the intended interface and is what the memory
-# factory validates. Do NOT expect it to run GPU inference yet.
+# The InfoKV GPU integration is wired for the Qwen2.5-VL backend. Run the
+# dedicated smoke first, then use this configuration for a real paired pass.
 model:
   name: Qwen2.5-VL
   backend: qwen2_5_vl
@@ -57,6 +56,9 @@ memory:
     layer_evolution:
       enabled: true
       weight: 0.35
+      # When enabled, each Transformer layer keeps its own Top-K token set.
+      # N and A remain shared; D is computed between adjacent layer states.
+      layerwise: true
       # Real GPU capture reads ONLY these two layers (never output_hidden_states).
       # null -> integration defaults: (2, num_layers-4).
       layer_a: null
