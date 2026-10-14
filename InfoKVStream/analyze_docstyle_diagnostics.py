@@ -240,6 +240,32 @@ def analyze(root):
            'experiment_contract':manifest['contract_id'],
            'analyzer_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     (out/'control_variables_audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
+    def _md(value, digits=4):
+        if value is None:
+            return '—'
+        if isinstance(value, float):
+            return f'{value:.{digits}g}'
+        return str(value)
+
+    summary_lines = [
+        '', '## Budget summary', '',
+        '| Budget | Method | N | Accuracy | mean k | triggers | effective | RAM | AORE | JS | KL | ΔP_gold | ΔM_z |',
+        '|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|',
+    ]
+    for row in sorted(stress_summary, key=lambda r: (r['budget'], r['method'])):
+        summary_lines.append(
+            '| {budget} | {method} | {N}/{expected} | {accuracy} | {mean_k} | '
+            '{total_triggers} | {total_effective_compactions} | {ram} | {aore} | '
+            '{js} | {kl} | {dp} | {dm} |'.format(
+                budget=row['budget'], method=row['method'], N=row['N'], expected=row['expected'],
+                accuracy=_md(row['accuracy']), mean_k=_md(row['mean_k']),
+                total_triggers=row['total_triggers'],
+                total_effective_compactions=row['total_effective_compactions'],
+                ram=_md(row.get('mean_ram_mean')), aore=_md(row.get('mean_aore_mean')),
+                js=_md(row.get('mean_js')), kl=_md(row.get('mean_kl')),
+                dp=_md(row.get('video_mean_delta_p_gold')), dm=_md(row.get('video_mean_delta_margin')),
+            )
+        )
     lines=['# 文档口径的 HERMES / InfoKV 对比','',f'固定问题压缩轨迹：{len(controls)}/20 个视频完成。',
            f'预算扫描：{completed_budgets} / {BUDGETS} 已完成，两种方法每档均为同一 100 题。','',
            '采用同一 Qwen2.5-VL-7B、官方 prompt 和自由解码、0.5 FPS、2 帧/chunk、max_side=336、full_prefix。',
@@ -249,7 +275,8 @@ def analyze(root):
            '图 5–6：真实问题相对同一 Full 的 ΔP_gold / ΔM_z，按 exact k 统计 mean/median。这两个图包含 100 个实际问题，并不使用未来问题 probe 计算任务决策指标。',
            '图 7–11：仅纳入两种方法均完成 100 题的预算；部分结果不与全量结果连线。ΔP/ΔM 先在视频内聚合 5 题，再跨 20 视频算 mean/median。',
            '图 12–17（OVO）：需要原先七档全量队列完成后再画；不能把不同覆盖数的未完成预算当成完整曲线。','',
-           '所有图保存 PNG 和 PDF；绘图数据及控制变量审计保存在 analysis/。','']
+           '所有图保存 PNG 和 PDF；绘图数据及控制变量审计保存在 analysis。',
+           *summary_lines, '']
     (out/'report_zh.md').write_text('\n'.join(lines))
     print(json.dumps({k:v for k,v in audit.items() if k!='checks'},ensure_ascii=False))
 
